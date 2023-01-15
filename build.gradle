@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+}
+
+ext {
+    libraries = [
+            rxjava     : "2.2.2",
+            spring_boot: "2.5.9",
+            fastjson   : "1.2.51"
+    ]
+}
+
+version '1.0-SNAPSHOT'
+
+springBoot {
+    //设定启动类
+    mainClassName = "com.com.renwubu.Application"
+}
+
+
+sourceCompatibility = 1.8
+
+def libs = rootProject.ext.libraries
+
+repositories {
+    mavenLocal()
+    maven { url("https://maven.aliyun.com/repository/public/") }
+    mavenCentral()
+}
+
+dependencies {
+    implementation "io.reactivex.rxjava2:rxjava:${libs.rxjava}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${libs.spring_boot}"
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${libs.spring_boot}")
+    implementation(group: 'org.springframework.batch', name: 'spring-batch-core', version: '4.0.0.RELEASE')
+    implementation(group: 'mysql', name: 'mysql-connector-java', version: '8.0.30')
+    implementation(group: 'org.mybatis', name: 'mybatis', version: '3.4.5')
+    implementation("javax.xml.bind:jaxb-api:2.3.0")
+    implementation("com.sun.xml.bind:jaxb-impl:2.3.0")
+    implementation("com.sun.xml.bind:jaxb-core:2.3.0")
+    implementation("javax.activation:activation:1.1.1")
+    implementation "com.alibaba:fastjson:${libs.fastjson}"
+    implementation 'org.projectlombok:lombok:1.18.20'
+    implementation('com.baomidou:mybatis-plus-boot-starter:3.5.2')
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${libs.spring_boot}"
+
+
+}
+
+
+

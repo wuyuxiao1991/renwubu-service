@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+<!--    <plugins>-->
+        <!--分页插件，指定使用特定的拦截器com.github.pagehelper.PageInterceptor-->
+<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>-->
+<!--    </plugins>-->
+    <!--数据源配置-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!--利用连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/new_schema"/>
+                <property name="username" value="wuyuxiao"/>
+                <property name="password" value="mysql"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--将UserMapper.xml装载进来与UserMapper.java对应，映射。并建立UserMapper接口类的实现类-->
+<!--        <mapper resource="mapper/UserInfoMapper.xml"/>-->
+<!--        <mapper resource="mapper/MenuMapper.xml"/>-->
+        <package name="mapper"/>
+
+        <!--也可以使用包路径映射整个XML文件的目录路径，如下-->
+        <!--<package name="com.mybatis_demo2.mapper"/>-->
+    </mappers>
+</configuration>

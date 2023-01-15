@@ -1,0 +1,48 @@
+debug: true
+
+
+spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/test
+#    username: postgres
+#    password: wuwu1991
+#  #  password: 2jvR6#(=)Pyi0MugyYOJiJ4hainlPG
+#  #    password: 7aOIPMgu1O4rkw7f6Oxt0TTSxgDFpSuU
+#    driverClassName: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 5
+#    druid:
+#      filters: stat
+#      max-active: 100
+#      initial-size: 1
+#      max-wait: 60000
+#      min-idle: 1
+#      time-between-eviction-runs-millis: 60000
+#      min-evictable-idle-time-millis: 300000
+#      validation-query: select 1
+#      test-while-idle: true
+#      test-on-borrow: false
+#      test-on-return: false
+#      pool-prepared-statements: true
+#      max-open-prepared-statements: 50
+#      max-pool-prepared-statement-per-connection-size: 20
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        enable_lazy_load_no_trans: true
+#        format-sql: true
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+server:
+  port: 8089
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   # * 在yaml 文件属于关键字
+
