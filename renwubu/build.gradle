@@ -12,7 +12,6 @@ ext {
 }
 
 
-
 version '1.0-SNAPSHOT'
 
 springBoot {
@@ -29,6 +28,8 @@ repositories {
     maven { url("https://maven.aliyun.com/repository/public/") }
     mavenCentral()
 }
+
+apply plugin: "war"
 
 dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.2.2"
@@ -47,6 +48,14 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
     implementation('com.baomidou:mybatis-plus-boot-starter:3.5.2')
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+//    implementation('javax.servlet:servlet-api:2.5')
+//将tomcat的依赖范围修改为providedRuntime
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat:2.5.9')
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.0'
+    compileOnly 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.0'
+    compileOnly 'javax.servlet:jstl:1.2'
+    compileOnly 'javax.el:javax.el-api:3.0.0'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.63'
 
 
 }
