@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.SubmenuMapper">
+
+    <select id="findByNameAndIdentity" resultType="com.persistence.entity.Submenu">
+        select
+        id,
+        menu_guid,
+        submenu_guid,
+        name,
+        create_time,
+        update_time
+        from submenu
+        where menu_guid=#{menu_guid} order by create_time
+    </select>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.renwubu.persistence.mapper.NewsMapper">
+
+    <select id="findBySubmenuGuid" resultType="com.renwubu.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        create_time,
+        update_time
+        from news
+        where submenu_guid = #{submenu_guid} order by create_time
+    </select>
+</mapper>

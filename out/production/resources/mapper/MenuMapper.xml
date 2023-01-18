@@ -9,12 +9,12 @@
         select
         id,
         menu_guid,
-        menu_name,
-        menu_type,
+        name,
+        type,
         identity,
         create_time,
         update_time
         from menu
-        where menu_name = #{name} and identity = #{identity} order by create_time
+        where name = #{name} and identity = #{identity} order by create_time
     </select>
 </mapper>
