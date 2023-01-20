@@ -1,7 +1,6 @@
 package com.endpoint;
 
 
-import com.alibaba.fastjson.JSON;
 import com.model.BaseResponse;
 import com.model.dto.NewsDto;
 import com.model.dto.SubmenuNews;
@@ -13,7 +12,10 @@ import com.service.MenuService;
 import com.service.NewsService;
 import com.service.SubmenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,6 +55,6 @@ public class MenuController {
 
     private List<NewsDto> transform(Submenu subMenu) {
         List<News> newsList = newsService.getNews(subMenu.submenuGuid);
-        return newsList.stream().map(p -> new NewsDto(p.newsGuid, p.title, p.text, JSON.parseObject(p.images, List.class))).collect(Collectors.toList());
+        return newsList.stream().map(NewsDto::transform).collect(Collectors.toList());
     }
 }

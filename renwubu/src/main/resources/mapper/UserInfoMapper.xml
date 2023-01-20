@@ -7,7 +7,7 @@
 
     <select id="findByName" resultType="com.persistence.entity.UserInfo">
         select
-        id,name,password,identity,create_time,update_time
+        id,user_guid, name,password,identity,create_time,update_time
         from user_info
         where name = #{name}
     </select>
