@@ -1,9 +1,6 @@
 package com.persistence.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -25,8 +22,8 @@ public class Menu {
     @TableField(value = "identity")
     String identity;
 
-    @TableField(value = "create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT )
     LocalDateTime createTime;
-    @TableField(value = "update_time")
+    @TableField(value = "create_time", fill = FieldFill.UPDATE )
     LocalDateTime updateTime;
 }

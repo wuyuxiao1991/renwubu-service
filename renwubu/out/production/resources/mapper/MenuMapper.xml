@@ -15,6 +15,17 @@
         create_time,
         update_time
         from menu
-        where name = #{name} and identity = #{identity} order by create_time
+        <where>
+            <!-- test：判断表达式（OGNL）
+            遇见特殊符号应该去写转义字符：&&、''等字符
+            -->
+            <if test="name!=null and name!=''">
+                name=#{name}
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like #{identity}
+            </if>
+        </where>
+        order by create_time
     </select>
 </mapper>

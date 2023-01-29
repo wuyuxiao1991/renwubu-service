@@ -12,7 +12,10 @@ import java.util.List;
 @Mapper
 public interface SubmenuMapper extends BaseMapper<Submenu> {
 
-    List<Submenu> findByNameAndIdentity(String menuGuid);
+    List<Submenu> findByMenuGuid(String menuGuid);
 
+    List<Submenu> findByName(String menuGuid);
+
+    Submenu findByGuid(String submenuGuid);
 
 }

@@ -13,11 +13,73 @@
         title,
         text,
         images,
-        deliver_user_id,
         deliver_user_name,
         create_time,
         update_time
         from news
-        where submenu_guid = #{submenu_guid} order by create_time
+        where submenu_guid = #{submenu_guid} and  (deleted ='0' or deleted is null) order by create_time
     </select>
+
+
+    <select id="findByGuid" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        where news_guid = #{news_guid} and  (deleted ='0' or deleted is null) order by create_time
+    </select>
+
+    <select id="pageQueryNews" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        <where>
+            <if test="submenuGuids!=null and submenuGuids.size!=0">
+                submenu_guid in
+                <foreach collection="submenuGuids" item="item" open="(" separator="," close=")">#{item}
+                </foreach>
+            </if>
+            <if test="searchKey!=null and searchKey!=''">
+                and title like concat('%',#{searchKey},'%')
+            </if>
+        </where>
+        and  (deleted ='0' or deleted is null) order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="findBySubmenuGuidAndTitle" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        where submenu_guid = #{submenuGuid} and title = #{title}
+        and  (deleted ='0' or deleted is null) order by create_time desc
+    </select>
+
+
+    <update id="updateDeleteStatus">
+        update news set deleted = 1 where news_guid = #{newsGuid}
+    </update>
+
 </mapper>

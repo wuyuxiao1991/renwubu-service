@@ -14,6 +14,11 @@ import java.util.List;
 @Mapper
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * @param name
+     * @param identity
+     * @return menu
+     */
     List<Menu> findByNameAndIdentity(@Param("name") String name, @Param("identity") String identity);
 
 }

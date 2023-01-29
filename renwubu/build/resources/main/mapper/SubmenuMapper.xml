@@ -5,7 +5,7 @@
 
 <mapper namespace="com.persistence.mapper.SubmenuMapper">
 
-    <select id="findByNameAndIdentity" resultType="com.persistence.entity.Submenu">
+    <select id="findByMenuGuid" resultType="com.persistence.entity.Submenu">
         select
         id,
         menu_guid,
@@ -14,7 +14,32 @@
         create_time,
         update_time
         from submenu
-        where menu_guid=#{menu_guid} order by create_time
+        where menu_guid=#{menuGuid} order by create_time
+    </select>
+
+    <select id="findByName" resultType="com.persistence.entity.Submenu">
+        select
+        id,
+        menu_guid,
+        submenu_guid,
+        name,
+        create_time,
+        update_time
+        from submenu
+        where name=#{name} order by create_time
+    </select>
+
+
+    <select id="findByGuid" resultType="com.persistence.entity.Submenu">
+        select
+        id,
+        menu_guid,
+        submenu_guid,
+        name,
+        create_time,
+        update_time
+        from submenu
+        where submenu_guid=#{submenuGuid}
     </select>
 
 </mapper>

@@ -1,5 +1,7 @@
 
 spring:
+  jpa:
+      show-sql: true
   profiles:
     active: local
   application:

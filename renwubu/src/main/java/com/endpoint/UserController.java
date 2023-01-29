@@ -35,7 +35,7 @@ public class UserController {
                 return BaseResponse.failed("用户密码错误！");
             }
 
-            return BaseResponse.ok(UserDto.transfrom(result));
+            return BaseResponse.ok(UserDto.transform(result));
         } catch (Exception e) {
             return BaseResponse.failed(e.getLocalizedMessage());
         }

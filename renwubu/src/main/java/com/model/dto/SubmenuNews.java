@@ -8,9 +8,9 @@ import java.util.List;
 public class SubmenuNews {
     String submenuGuid;
     String submenuName;
-    List<NewsDto> newsList;
+    List<NewsDetail> newsList;
 
-    public SubmenuNews(String submenuGuid, String name, List<NewsDto> news) {
+    public SubmenuNews(String submenuGuid, String name, List<NewsDetail> news) {
         this.submenuGuid = submenuGuid;
         this.submenuName = name;
         this.newsList = news;
@@ -32,11 +32,11 @@ public class SubmenuNews {
         this.submenuName = submenuName;
     }
 
-    public List<NewsDto> getNewsList() {
+    public List<NewsDetail> getNewsList() {
         return newsList;
     }
 
-    public void setNewsList(List<NewsDto> newsList) {
+    public void setNewsList(List<NewsDetail> newsList) {
         this.newsList = newsList;
     }
 }
