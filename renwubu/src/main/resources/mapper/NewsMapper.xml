@@ -49,16 +49,39 @@
         update_time
         from news
         <where>
-            <if test="submenuGuids!=null and submenuGuids.size!=0">
-                submenu_guid in
-                <foreach collection="submenuGuids" item="item" open="(" separator="," close=")">#{item}
-                </foreach>
+            (deleted ='0' or deleted is null)
+            and submenu_guid in
+            <if test="submenuGuids.size > 0">
+            <foreach collection="submenuGuids" item="item" open="(" separator="," close=")">#{item}
+            </foreach>
+            </if>
+            <if test="submenuGuids.size == 0">
+               ('')
             </if>
             <if test="searchKey!=null and searchKey!=''">
                 and title like concat('%',#{searchKey},'%')
             </if>
         </where>
-        and  (deleted ='0' or deleted is null) order by create_time desc limit #{offset}, #{pageSize}
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryNewsTotalCount"  resultType="java.lang.Integer">
+        select count(*) from news
+        <where>
+            (deleted ='0' or deleted is null)
+            and submenu_guid in
+            <if test="submenuGuids.size > 0">
+                <foreach collection="submenuGuids" item="item" open="(" separator="," close=")">#{item}
+                </foreach>
+            </if>
+            <if test="submenuGuids.size == 0">
+                ('')
+            </if>
+            <if test="searchKey!=null and searchKey!=''">
+                and title like concat('%',#{searchKey},'%')
+            </if>
+        </where>
     </select>
 
     <select id="findBySubmenuGuidAndTitle" resultType="com.persistence.entity.News">

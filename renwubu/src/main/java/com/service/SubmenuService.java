@@ -18,12 +18,7 @@ class SubmenuService {
     private SubmenuMapper submenumapper;
 
     public List<Submenu> getSubmenusByMenuGuid(String menuGuid) throws Exception {
-        List<Submenu> list = submenumapper.findByMenuGuid(menuGuid);
-        if (list.isEmpty()) {
-            throw new Exception("找不到该子菜单！");
-        }
-
-        return list;
+        return submenumapper.findByMenuGuid(menuGuid);
     }
 
     public List<Submenu> getSubmenusByName(String name) throws Exception {

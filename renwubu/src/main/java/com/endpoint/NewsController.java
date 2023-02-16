@@ -3,24 +3,19 @@ package com.endpoint;
 import com.model.BaseResponse;
 import com.model.dto.NewsDetail;
 import com.model.dto.NewsDto;
-import com.model.request.AddOrUpdateRequest;
-import com.model.request.DeleteNewsRequest;
-import com.model.request.PageQueryNewsRequest;
-import com.model.request.QueryNewsDetailRequest;
+import com.model.request.*;
 import com.persistence.entity.Menu;
 import com.persistence.entity.Submenu;
 import com.service.MenuService;
 import com.service.NewsService;
 import com.service.SubmenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -36,8 +31,11 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    @Value("${image.url}")
+    private String url;
+
     @PostMapping("/page_query_news")
-    public BaseResponse<List<NewsDto>> pageQueryNews(@RequestBody PageQueryNewsRequest request) {
+    public BaseResponse<PageQueryNewsResponse> pageQueryNews(@RequestBody PageQueryNewsRequest request) {
         try {
             //1.根据菜单名找到母菜单
             Menu menu = menuService.getMenus(request.getMenuName(), request.getIdentity());
@@ -48,7 +46,11 @@ public class NewsController {
             //3.分页查询news
             List<NewsDto> newsList = newsService.pageQueryNews(submenuList.stream().map(p -> p.submenuGuid).collect(Collectors.toList()),
                     request.getSearchKey(), request.getPageNumber(), request.getPageSize());
-            return BaseResponse.ok(newsList);
+
+            int count = newsService.queryNewsTotalCount(submenuList.stream().map(p -> p.submenuGuid).collect(Collectors.toList()),
+                    request.getSearchKey());
+
+            return BaseResponse.ok(new PageQueryNewsResponse(newsList, count));
         } catch (Exception e) {
             return BaseResponse.failed(e.getLocalizedMessage());
         }
@@ -75,24 +77,25 @@ public class NewsController {
     }
 
     @PostMapping("/add_or_update_news")
-    public BaseResponse<NewsDetail> addOrUpdateNews(@RequestPart(value = "images", required = true) MultipartFile[] files, @RequestPart("content") AddOrUpdateRequest request) {
+    public BaseResponse<NewsDetail> addOrUpdateNews(@RequestPart(value = "images", required = false) MultipartFile[] files, @RequestPart("content") AddOrUpdateRequest request) {
         try {
 //            1.上传图片到tomcat路径下
-            long count = Arrays.stream(files)
-                    .map(MultipartFile::getOriginalFilename).filter(Objects::nonNull).count();
             List<String> imageUrls = new ArrayList<>();
-            if (count > 0) {
-                for (MultipartFile picture : files) {
-                    String originalFilename = picture.getOriginalFilename();
-                    //todo 这里可以改变文件名
-                    //......
-                    //写文件
-                    String pathName = "G:/apache-tomcat-9.0.71/apache-tomcat-9.0.71/webapps/images" + "/" + originalFilename;
-                    picture.transferTo(new File(pathName));
-                    imageUrls.add(pathName);
+            if(files!=null) {
+                long count = Arrays.stream(files)
+                        .map(MultipartFile::getOriginalFilename).filter(Objects::nonNull).count();
+                if (count > 0) {
+                    for (MultipartFile picture : files) {
+                        String originalFilename = picture.getOriginalFilename();
+                        //todo 这里可以改变文件名
+                        //......
+                        //写文件
+                        String pathName = url + originalFilename;
+                        picture.transferTo(new File(pathName));
+                        imageUrls.add(pathName);
+                    }
                 }
             }
-
             //2.保存news
             NewsDetail newsDetail = newsService.addOrUpdateNews(request, imageUrls);
 

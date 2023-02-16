@@ -26,6 +26,9 @@ public interface NewsMapper extends BaseMapper<News> {
                              @Param("searchKey") String searchKey,
                              @Param("offset") int offset, @Param("pageSize") int pageSize);
 
+    int queryNewsTotalCount(@Param("submenuGuids") List<String> submenuGuids,
+                             @Param("searchKey") String searchKey);
+
     int updateDeleteStatus(String newsGuid);
 
 }

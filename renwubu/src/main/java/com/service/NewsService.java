@@ -48,12 +48,20 @@ public class NewsService {
         return newsList.stream().map(this::toDto).collect(Collectors.toList());
     }
 
+    public int queryNewsTotalCount(List<String> submenuGuids, String searchKey) {
+        return newsMapper.queryNewsTotalCount(submenuGuids, searchKey);
+    }
+
     public NewsDetail addOrUpdateNews(AddOrUpdateRequest request, List<String> imageUrls) {
         List<News> newsList = getNewsBySubmenuGuidAndTitle(request.getSubmenuGuid(), request.getTitle());
         News news;
         if (!newsList.isEmpty()) {
             news = newsList.get(0);
-            updateFields(news, request, imageUrls);
+            if (imageUrls.size() > 0) {
+                updateAllFields(news, request, imageUrls);
+            } else {
+                updateText(news, request);
+            }
             newsMapper.updateById(news);
         } else {
             news = generateNews(request, imageUrls);
@@ -63,9 +71,15 @@ public class NewsService {
     }
 
 
-    private void updateFields(News news, AddOrUpdateRequest request, List<String> imageUrls) {
+    private void updateAllFields(News news, AddOrUpdateRequest request, List<String> imageUrls) {
         news.title = request.getTitle();
         news.images = JSON.toJSONString(imageUrls);
+        news.deliverUserName = request.getDeliverUserName();
+        news.text = request.getText();
+    }
+
+    private void updateText(News news, AddOrUpdateRequest request) {
+        news.title = request.getTitle();
         news.deliverUserName = request.getDeliverUserName();
         news.text = request.getText();
     }
@@ -73,7 +87,7 @@ public class NewsService {
 
     private News generateNews(AddOrUpdateRequest request, List<String> imageUrls) {
         News news = new News();
-        news.newsGuid=UUID.randomUUID().toString();
+        news.newsGuid = UUID.randomUUID().toString();
         news.title = request.getTitle();
         news.images = JSON.toJSONString(imageUrls);
         news.submenuGuid = request.getSubmenuGuid();
