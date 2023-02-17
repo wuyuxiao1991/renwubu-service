@@ -3,33 +3,51 @@ package com.persistence.entity;
 import java.util.Date;
 import java.sql.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- * PreBuiltPartyOrganization 实体类
+ * pre_built_party_organization 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("pre_built_party_organization")
 public class PreBuiltPartyOrganization {
 
-	private int id; 
+	@TableField(value = "id")
+	public int id; 
 
-	private String partyOrganizationName; 
+	@TableField(value = "party_organization_name")
+	public String partyOrganizationName; 
 
-	private String partyOrganizationStartTime; 
+	@TableField(value = "party_organization_start_time")
+	public String partyOrganizationStartTime; 
 
-	private String approvalBy; 
+	@TableField(value = "approval_by")
+	public String approvalBy; 
 
-	private String subordination; 
+	@TableField(value = "subordination")
+	public String subordination; 
 
-	private String team; 
+	@TableField(value = "team")
+	public String team; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity; 
 
-	private Date createTime; 
+	@TableField(value = "create_time")
+	public Date createTime; 
 
-	private Date updateTime; 
+	@TableField(value = "update_time")
+	public Date updateTime; 
+
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

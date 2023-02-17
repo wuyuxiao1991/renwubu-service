@@ -1,54 +1,75 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 /**
- * TrainingMissionDetails 实体类
+ * training_mission_details 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("training_mission_details")
 public class TrainingMissionDetails {
+	@TableId(type = IdType.AUTO)
+	Long id;
 
-	private int id; 
+	@TableField(value = "year")
+	public String year; 
 
-	private String year; 
+	@TableField(value = "province")
+	public String province; 
 
-	private String province; 
+	@TableField(value = "city")
+	public String city; 
 
-	private String city; 
+	@TableField(value = "district")
+	public String district; 
 
-	private String district; 
+	@TableField(value = "team_branch_name")
+	public String teamBranchName; 
 
-	private String teamBranchName; 
+	@TableField(value = "affiliation")
+	public String affiliation; 
 
-	private String affiliation; 
+	@TableField(value = "team_type")
+	public String teamType; 
 
-	private String teamType; 
+	@TableField(value = "organized_headcount")
+	public String organizedHeadcount; 
 
-	private String organizedHeadcount; 
+	@TableField(value = "training_headcount")
+	public String trainingHeadcount; 
 
-	private String trainingHeadcount; 
+	@TableField(value = "base_concentrated_training_time")
+	public String baseConcentratedTrainingTime; 
 
-	private String baseConcentratedTrainingTime; 
+	@TableField(value = "other_traning_time")
+	public String otherTraningTime; 
 
-	private String otherTraningTime; 
+	@TableField(value = "total_count")
+	public String totalCount; 
 
-	private String totalCount; 
+	@TableField(value = "concentrated_training_place")
+	public String concentratedTrainingPlace; 
 
-	private String concentratedTrainingPlace; 
+	@TableField(value = "identity")
+	public String identity;
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
+	@TableField(value = "create_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
 
-	private String identity; 
-
-	private Date createTime; 
-
-	private Date updateTime; 
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

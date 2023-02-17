@@ -3,47 +3,72 @@ package com.persistence.entity;
 import java.util.Date;
 import java.sql.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- * EmergencyEquipmentRegistration 实体类
+ * emergency_equipment_registration 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("emergency_equipment_registration")
 public class EmergencyEquipmentRegistration {
 
-	private int id; 
+	@TableField(value = "id")
+	public int id; 
 
-	private String equipmentName; 
+	@TableField(value = "equipment_name")
+	public String equipmentName; 
 
-	private String type; 
+	@TableField(value = "type")
+	public String type; 
 
-	private String unit; 
+	@TableField(value = "unit")
+	public String unit; 
 
-	private String number; 
+	@TableField(value = "number")
+	public String number; 
 
-	private String use; 
+	@TableField(value = "use")
+	public String use; 
 
-	private String warehousingTime; 
+	@TableField(value = "warehousing_time")
+	public String warehousingTime; 
 
-	private String equipmentPerformance; 
+	@TableField(value = "equipment_performance")
+	public String equipmentPerformance; 
 
-	private String storagePlace; 
+	@TableField(value = "storage_place")
+	public String storagePlace; 
 
-	private String managementUnit; 
+	@TableField(value = "management_unit")
+	public String managementUnit; 
 
-	private String dispatchTime; 
+	@TableField(value = "dispatch_time")
+	public String dispatchTime; 
 
-	private String organizationType; 
+	@TableField(value = "organization_type")
+	public String organizationType; 
 
-	private String district; 
+	@TableField(value = "district")
+	public String district; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity; 
 
-	private Date createTime; 
+	@TableField(value = "create_time")
+	public Date createTime; 
 
-	private Date updateTime; 
+	@TableField(value = "update_time")
+	public Date updateTime; 
+
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

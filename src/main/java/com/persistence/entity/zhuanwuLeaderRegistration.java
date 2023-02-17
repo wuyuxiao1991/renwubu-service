@@ -3,85 +3,126 @@ package com.persistence.entity;
 import java.util.Date;
 import java.sql.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- * ZhuanwuLeaderRegistration 实体类
+ * zhuanwu_leader_registration 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("zhuanwu_leader_registration")
 public class ZhuanwuLeaderRegistration {
 
-	private int id; 
+	@TableField(value = "id")
+	public int id; 
 
-	private String work; 
+	@TableField(value = "work")
+	public String work; 
 
-	private String position; 
+	@TableField(value = "position")
+	public String position; 
 
-	private String name; 
+	@TableField(value = "name")
+	public String name; 
 
-	private String sex; 
+	@TableField(value = "sex")
+	public String sex; 
 
-	private String idNumber; 
+	@TableField(value = "id_number")
+	public String idNumber; 
 
-	private String politicalStatus; 
+	@TableField(value = "political_status")
+	public String politicalStatus; 
 
-	private String educationLevel; 
+	@TableField(value = "education_level")
+	public String educationLevel; 
 
-	private String phone; 
+	@TableField(value = "phone")
+	public String phone; 
 
-	private String birthDate; 
+	@TableField(value = "birth_date")
+	public String birthDate; 
 
-	private String partyTime; 
+	@TableField(value = "party_time")
+	public String partyTime; 
 
-	private String workDuration; 
+	@TableField(value = "work_duration")
+	public String workDuration; 
 
-	private String mianrenUnit; 
+	@TableField(value = "mianren_unit")
+	public String mianrenUnit; 
 
-	private String isInMinbing; 
+	@TableField(value = "is_in_minbing")
+	public String isInMinbing; 
 
-	private String teamNameAndPosition; 
+	@TableField(value = "team_name_and_position")
+	public String teamNameAndPosition; 
 
-	private String partyWorkTime; 
+	@TableField(value = "party_work_time")
+	public String partyWorkTime; 
 
-	private String isRetireMilitary; 
+	@TableField(value = "is_retire_military")
+	public String isRetireMilitary; 
 
-	private String enlistmentTime; 
+	@TableField(value = "enlistment_time")
+	public String enlistmentTime; 
 
-	private String retireTime; 
+	@TableField(value = "retire_time")
+	public String retireTime; 
 
-	private String durationOfMilitary; 
+	@TableField(value = "duration_of_military")
+	public String durationOfMilitary; 
 
-	private String typeOfMilitaryService; 
+	@TableField(value = "type_of_military_service")
+	public String typeOfMilitaryService; 
 
-	private String positionWhenRetire; 
+	@TableField(value = "position_when_retire")
+	public String positionWhenRetire; 
 
-	private String isTrainedInRenwuSchool; 
+	@TableField(value = "is_trained_in_renwu_school")
+	public String isTrainedInRenwuSchool; 
 
-	private String isPass; 
+	@TableField(value = "is_pass")
+	public String isPass; 
 
-	private String qualificationTimeAndUnit; 
+	@TableField(value = "qualification_time_and_unit")
+	public String qualificationTimeAndUnit; 
 
-	private String trainingSituation; 
+	@TableField(value = "training_situation")
+	public String trainingSituation; 
 
-	private String testResult; 
+	@TableField(value = "test_result")
+	public String testResult; 
 
-	private String taskExecution; 
+	@TableField(value = "task_execution")
+	public String taskExecution; 
 
-	private String rewardAndPunishment; 
+	@TableField(value = "reward_and_punishment")
+	public String rewardAndPunishment; 
 
-	private String resume; 
+	@TableField(value = "resume")
+	public String resume; 
 
-	private String parttimeNumber; 
+	@TableField(value = "parttime_number")
+	public String parttimeNumber; 
 
-	private String parttimeWork; 
+	@TableField(value = "parttime_work")
+	public String parttimeWork; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity; 
 
-	private Date createTime; 
+	@TableField(value = "create_time")
+	public Date createTime; 
 
-	private Date updateTime; 
+	@TableField(value = "update_time")
+	public Date updateTime; 
 }
 

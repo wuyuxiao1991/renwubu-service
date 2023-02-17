@@ -3,157 +3,237 @@ package com.persistence.entity;
 import java.util.Date;
 import java.sql.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- * MilitaryStrengthRegistration 实体类
+ * military_strength_registration 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("military_strength_registration")
 public class MilitaryStrengthRegistration {
 
-	private int id; 
+	@TableField(value = "id")
+	public int id; 
 
-	private String requiredBy; 
+	@TableField(value = "required_by")
+	public String requiredBy; 
 
-	private String taskType; 
+	@TableField(value = "task_type")
+	public String taskType; 
 
-	private String startToEndTime; 
+	@TableField(value = "start_to_end_time")
+	public String startToEndTime; 
 
-	private String concreteTask; 
+	@TableField(value = "concrete_task")
+	public String concreteTask; 
 
-	private String requirementNumber; 
+	@TableField(value = "requirement_number")
+	public String requirementNumber; 
 
-	private String taskPlace; 
+	@TableField(value = "task_place")
+	public String taskPlace; 
 
-	private String approvalBy; 
+	@TableField(value = "approval_by")
+	public String approvalBy; 
 
-	private String approvalFileName; 
+	@TableField(value = "approval_file_name")
+	public String approvalFileName; 
 
-	private String issuedNumber; 
+	@TableField(value = "issued_number")
+	public String issuedNumber; 
 
-	private String commandUnit; 
+	@TableField(value = "command_unit")
+	public String commandUnit; 
 
-	private String commandInfo; 
+	@TableField(value = "command_info")
+	public String commandInfo; 
 
-	private String fundsSource; 
+	@TableField(value = "funds_source")
+	public String fundsSource; 
 
-	private String subsidyStandard; 
+	@TableField(value = "subsidy_standard")
+	public String subsidyStandard; 
 
-	private String equipmentRequirement; 
+	@TableField(value = "equipment_requirement")
+	public String equipmentRequirement; 
 
-	private String totalPeopleForLooseUse; 
+	@TableField(value = "total_people_for_loose_use")
+	public String totalPeopleForLooseUse; 
 
-	private String totalPeopleDayForLooseUse; 
+	@TableField(value = "total_people_day_for_loose_use")
+	public String totalPeopleDayForLooseUse; 
 
-	private String normalPeopleForLooseUse; 
+	@TableField(value = "normal_people_for_loose_use")
+	public String normalPeopleForLooseUse; 
 
-	private String normalPeopleDayForLooseUse; 
+	@TableField(value = "normal_people_day_for_loose_use")
+	public String normalPeopleDayForLooseUse; 
 
-	private String jiganPeopleForLooseUse; 
+	@TableField(value = "jigan_people_for_loose_use")
+	public String jiganPeopleForLooseUse; 
 
-	private String jiganPeopleDayForLooseUse; 
+	@TableField(value = "jigan_people_day_for_loose_use")
+	public String jiganPeopleDayForLooseUse; 
 
-	private String newPowerPeopleForLooseUse; 
+	@TableField(value = "new_power_people_for_loose_use")
+	public String newPowerPeopleForLooseUse; 
 
-	private String newPowerPeopleDayForLooseUse; 
+	@TableField(value = "new_power_people_day_for_loose_use")
+	public String newPowerPeopleDayForLooseUse; 
 
-	private String totalTeamForSystemUse; 
+	@TableField(value = "total_team_for_system_use")
+	public String totalTeamForSystemUse; 
 
-	private String totalPeopleForSystemUse; 
+	@TableField(value = "total_people_for_system_use")
+	public String totalPeopleForSystemUse; 
 
-	private String totalPeopleDayForSystemUse; 
+	@TableField(value = "total_people_day_for_system_use")
+	public String totalPeopleDayForSystemUse; 
 
-	private String normalMinbingTeamNameForSystemUse; 
+	@TableField(value = "normal_minbing_team_name_for_system_use")
+	public String normalMinbingTeamNameForSystemUse; 
 
-	private String normalMinbingPeopleForSystemUse; 
+	@TableField(value = "normal_minbing_people_for_system_use")
+	public String normalMinbingPeopleForSystemUse; 
 
-	private String normalMinbingPeopleDayForSystemUse; 
+	@TableField(value = "normal_minbing_people_day_for_system_use")
+	public String normalMinbingPeopleDayForSystemUse; 
 
-	private String jiganMinbingTeamNameForSystemUse; 
+	@TableField(value = "jigan_minbing_team_name_for_system_use")
+	public String jiganMinbingTeamNameForSystemUse; 
 
-	private String jiganMinbingPeopleForSystemUse; 
+	@TableField(value = "jigan_minbing_people_for_system_use")
+	public String jiganMinbingPeopleForSystemUse; 
 
-	private String jiganMinbingPeopleDayForSystemUse; 
+	@TableField(value = "jigan_minbing_people_day_for_system_use")
+	public String jiganMinbingPeopleDayForSystemUse; 
 
-	private String newPowerPeopleForSystemUse; 
+	@TableField(value = "new_power_people_for_system_use")
+	public String newPowerPeopleForSystemUse; 
 
-	private String newPowerPeopleDayForSystemUse; 
+	@TableField(value = "new_power_people_day_for_system_use")
+	public String newPowerPeopleDayForSystemUse; 
 
-	private String totalDisptachEquipment; 
+	@TableField(value = "total_disptach_equipment")
+	public String totalDisptachEquipment; 
 
-	private String lightWeapon; 
+	@TableField(value = "light_weapon")
+	public String lightWeapon; 
 
-	private String observationEquipment; 
+	@TableField(value = "observation_equipment")
+	public String observationEquipment; 
 
-	private String communicationEquipment; 
+	@TableField(value = "communication_equipment")
+	public String communicationEquipment; 
 
-	private String carEquipment; 
+	@TableField(value = "car_equipment")
+	public String carEquipment; 
 
-	private String engineeringEquipment; 
+	@TableField(value = "engineering_equipment")
+	public String engineeringEquipment; 
 
-	private String chemical prevention; 
+	@TableField(value = "chemical prevention")
+	public String chemical prevention; 
 
-	private String otherForDispatchEquipment; 
+	@TableField(value = "other_for_dispatch_equipment")
+	public String otherForDispatchEquipment; 
 
-	private String totalForEmergencyEquipment; 
+	@TableField(value = "total_for_emergency_equipment")
+	public String totalForEmergencyEquipment; 
 
-	private String antiTerrorismEquipment; 
+	@TableField(value = "anti_terrorism_equipment")
+	public String antiTerrorismEquipment; 
 
-	private String floodPreventionEquipment; 
+	@TableField(value = "flood_prevention_equipment")
+	public String floodPreventionEquipment; 
 
-	private String ruinsRescueEquipment; 
+	@TableField(value = "ruins_rescue_equipment")
+	public String ruinsRescueEquipment; 
 
-	private String forestFireFightingEquipment; 
+	@TableField(value = "forest_fire_fighting_equipment")
+	public String forestFireFightingEquipment; 
 
-	private String fightSnowEquipment; 
+	@TableField(value = "fight_snow_equipment")
+	public String fightSnowEquipment; 
 
-	private String riverSalvageEquipment; 
+	@TableField(value = "river_salvage_equipment")
+	public String riverSalvageEquipment; 
 
-	private String helicopterEquipment; 
+	@TableField(value = "helicopter_equipment")
+	public String helicopterEquipment; 
 
-	private String shipboardEquipment; 
+	@TableField(value = "shipboard_equipment")
+	public String shipboardEquipment; 
 
-	private String carsForEmergencyEquipment; 
+	@TableField(value = "cars_for_emergency_equipment")
+	public String carsForEmergencyEquipment; 
 
-	private String engineeringForEmergencyEquipment; 
+	@TableField(value = "engineering_for_emergency_equipment")
+	public String engineeringForEmergencyEquipment; 
 
-	private String uav; 
+	@TableField(value = "uav")
+	public String uav; 
 
-	private String othersForEmergencyEquipment; 
+	@TableField(value = "others_for_emergency_equipment")
+	public String othersForEmergencyEquipment; 
 
-	private String transferPeopleCount; 
+	@TableField(value = "transfer_people_count")
+	public String transferPeopleCount; 
 
-	private String rescuePeopleCount; 
+	@TableField(value = "rescue_people_count")
+	public String rescuePeopleCount; 
 
-	private String recoverEconomicLost; 
+	@TableField(value = "recover_economic_lost")
+	public String recoverEconomicLost; 
 
-	private String transportationMaterials; 
+	@TableField(value = "transportation_materials")
+	public String transportationMaterials; 
 
-	private String reinforceDyke; 
+	@TableField(value = "reinforce_dyke")
+	public String reinforceDyke; 
 
-	private String earthworkExcavation; 
+	@TableField(value = "earthwork_excavation")
+	public String earthworkExcavation; 
 
-	private String putOutMountainFile; 
+	@TableField(value = "put_out_mountain_file")
+	public String putOutMountainFile; 
 
-	private String otherOutput; 
+	@TableField(value = "other_output")
+	public String otherOutput; 
 
-	private String basicReusltOfsupportMilitary; 
+	@TableField(value = "basic_reuslt_ofsupport_military")
+	public String basicReusltOfsupportMilitary; 
 
-	private String otherReusltOfSupportMilitary; 
+	@TableField(value = "other_reuslt_of_support_military")
+	public String otherReusltOfSupportMilitary; 
 
-	private String basicReusltOfMilitary; 
+	@TableField(value = "basic_reuslt_of_military")
+	public String basicReusltOfMilitary; 
 
-	private String otherReusltOfMilitary; 
+	@TableField(value = "other_reuslt_of_military")
+	public String otherReusltOfMilitary; 
 
-	private String district; 
+	@TableField(value = "district")
+	public String district; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity; 
 
-	private Date createTime; 
+	@TableField(value = "create_time")
+	public Date createTime; 
 
-	private Date updateTime; 
+	@TableField(value = "update_time")
+	public Date updateTime; 
+
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

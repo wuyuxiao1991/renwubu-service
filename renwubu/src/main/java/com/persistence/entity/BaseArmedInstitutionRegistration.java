@@ -1,44 +1,62 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 /**
- * BaseArmedInstitutionRegistration 实体类
+ * base_armed_institution_registration 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("base_armed_institution_registration")
 public class BaseArmedInstitutionRegistration {
 
-	private int id; 
+	@TableId(type = IdType.AUTO)
+	Long id;
 
-	private String name; 
+	@TableField(value = "name")
+	public String name; 
 
-	private String type; 
+	@TableField(value = "type")
+	public String type; 
 
-	private String place; 
+	@TableField(value = "place")
+	public String place; 
 
-	private String approvalBy; 
+	@TableField(value = "approval_by")
+	public String approvalBy; 
 
-	private String managementRelation; 
+	@TableField(value = "management_relation")
+	public String managementRelation; 
 
-	private String rank; 
+	@TableField(value = "rank")
+	public String rank; 
 
-	private String regionDistribution; 
+	@TableField(value = "region_distribution")
+	public String regionDistribution; 
 
-	private String memo; 
+	@TableField(value = "memo")
+	public String memo; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity;
 
-	private Date createTime; 
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
+	@TableField(value = "create_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
 
-	private Date updateTime; 
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

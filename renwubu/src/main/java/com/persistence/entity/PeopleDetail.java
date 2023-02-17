@@ -1,94 +1,137 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 /**
- * PeopleDetail 实体类
+ * people_detail 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("people_detail")
 public class PeopleDetail {
 
-	private int id; 
+	@TableId(type = IdType.AUTO)
+	Long id;
 
-	private String name; 
+	@TableField(value = "name")
+	public String name; 
 
-	private String rank; 
+	@TableField(value = "rank")
+	public String rank; 
 
-	private String idNumber; 
+	@TableField(value = "id_number")
+	public String idNumber; 
 
-	private String sex; 
+	@TableField(value = "sex")
+	public String sex; 
 
-	private String politicalStatus; 
+	@TableField(value = "political_status")
+	public String politicalStatus; 
 
-	private String educationLevel; 
+	@TableField(value = "education_level")
+	public String educationLevel; 
 
-	private String nationality; 
+	@TableField(value = "nationality")
+	public String nationality; 
 
-	private String health; 
+	@TableField(value = "health")
+	public String health; 
 
-	private String work; 
+	@TableField(value = "work")
+	public String work; 
 
-	private String workType; 
+	@TableField(value = "work_type")
+	public String workType; 
 
-	private String position; 
+	@TableField(value = "position")
+	public String position; 
 
-	private String isGovernmentWorker; 
+	@TableField(value = "is_government_worker")
+	public String isGovernmentWorker; 
 
-	private String workPlace; 
+	@TableField(value = "work_place")
+	public String workPlace; 
 
-	private String householdPlace; 
+	@TableField(value = "household_place")
+	public String householdPlace; 
 
-	private String phone; 
+	@TableField(value = "phone")
+	public String phone; 
 
-	private String militaryServiceStatus; 
+	@TableField(value = "military_service_status")
+	public String militaryServiceStatus; 
 
-	private String isStudentInCollege; 
+	@TableField(value = "is_student_in_college")
+	public String isStudentInCollege; 
 
-	private String enlistmentTime;
+	@TableField(value = "enlistment time")
+	public String enlistmentTime;
 
-	private String retireTime; 
+	@TableField(value = "retire_time")
+	public String retireTime; 
 
-	private String typeOfMilitary; 
+	@TableField(value = "type_of_military")
+	public String typeOfMilitary; 
 
-	private String militaryMajorName; 
+	@TableField(value = "military_major_name")
+	public String militaryMajorName; 
 
-	private String militaryMajorDuration; 
+	@TableField(value = "military_major_duration")
+	public String militaryMajorDuration; 
 
-	private String positionWhenRetire; 
+	@TableField(value = "position_when_retire")
+	public String positionWhenRetire; 
 
-	private String millitaryRankWhenRetire; 
+	@TableField(value = "millitary_rank_when_retire")
+	public String millitaryRankWhenRetire; 
 
-	private String localProfessionType1; 
+	@TableField(value = "local_profession_type_1")
+	public String localProfessionType1; 
 
-	private String localProfessionName1; 
+	@TableField(value = "local_profession_name_1")
+	public String localProfessionName1; 
 
-	private String technicalTitle1; 
+	@TableField(value = "technical_title_1")
+	public String technicalTitle1; 
 
-	private String professionDuration1; 
+	@TableField(value = "profession_duration_1")
+	public String professionDuration1; 
 
-	private String localProfessionType2; 
+	@TableField(value = "local_profession_type_2")
+	public String localProfessionType2; 
 
-	private String localProfessionName2; 
+	@TableField(value = "local_profession_name_2")
+	public String localProfessionName2; 
 
-	private String technicalTitle2; 
+	@TableField(value = "technical_title_2")
+	public String technicalTitle2; 
 
-	private String professionDuration2; 
+	@TableField(value = "profession_duration_2")
+	public String professionDuration2; 
 
-	private String direction; 
+	@TableField(value = "direction")
+	public String direction; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity;
 
-	private Date createTime; 
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
+	@TableField(value = "create_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
 
-	private Date updateTime; 
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

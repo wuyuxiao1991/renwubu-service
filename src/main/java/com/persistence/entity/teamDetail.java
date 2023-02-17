@@ -3,35 +3,54 @@ package com.persistence.entity;
 import java.util.Date;
 import java.sql.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- * TeamDetail 实体类
+ * team_detail 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("team_detail")
 public class TeamDetail {
 
-	private int id; 
+	@TableField(value = "id")
+	public int id; 
 
-	private String name; 
+	@TableField(value = "name")
+	public String name; 
 
-	private String type; 
+	@TableField(value = "type")
+	public String type; 
 
-	private String task; 
+	@TableField(value = "task")
+	public String task; 
 
-	private String professionalType; 
+	@TableField(value = "professional_type")
+	public String professionalType; 
 
-	private String numberOfPeople; 
+	@TableField(value = "number_of_people")
+	public String numberOfPeople; 
 
-	private Date formationTime; 
+	@TableField(value = "formation_time")
+	public Date formationTime; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity; 
 
-	private Date createTime; 
+	@TableField(value = "create_time")
+	public Date createTime; 
 
-	private Date updateTime; 
+	@TableField(value = "update_time")
+	public Date updateTime; 
+
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 

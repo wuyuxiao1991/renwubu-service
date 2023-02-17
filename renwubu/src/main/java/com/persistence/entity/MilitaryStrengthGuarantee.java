@@ -1,40 +1,55 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 /**
- * MilitaryStrengthGuarantee 实体类
+ * military_strength_guarantee 实体类
  * 2023-02-17 wuyuxiao
  */ 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("military_strength_guarantee")
 public class MilitaryStrengthGuarantee {
 
-	private int id; 
+	@TableId(type = IdType.AUTO)
+	Long id;
 
-	private String registrationTask; 
+	@TableField(value = "registration_task")
+	public String registrationTask; 
 
-	private String registrationPerson; 
+	@TableField(value = "registration_person")
+	public String registrationPerson; 
 
-	private String funds; 
+	@TableField(value = "funds")
+	public String funds; 
 
-	private String equipment; 
+	@TableField(value = "equipment")
+	public String equipment; 
 
-	private String memo; 
+	@TableField(value = "memo")
+	public String memo; 
 
-	private String district; 
+	@TableField(value = "district")
+	public String district; 
 
-	private String identity; 
+	@TableField(value = "identity")
+	public String identity;
 
-	private Date createTime; 
-
-	private Date updateTime; 
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
+	@TableField(value = "create_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
+	@TableField(value = "deleted")
+	public boolean deleted; 
 }
 
