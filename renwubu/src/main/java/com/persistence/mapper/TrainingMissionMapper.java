@@ -15,14 +15,16 @@ import java.util.List;
 public interface TrainingMissionMapper extends BaseMapper<TrainingMissionDetails> {
 
 
-    List<TrainingMissionDetails> pageQuery(@Param("year") String year,
+    List<TrainingMissionDetails> pageQuery(@Param("searchKey") String searchKey,
+                                           @Param("year") String year,
                                            @Param("province") String province,
                                            @Param("city") String city,
                                            @Param("district") String district,
                                            @Param("identity") String identity,
                                            @Param("offset") int offset, @Param("pageSize") int pageSize);
 
-    int queryTotalCount(@Param("year") String year,
+    int queryTotalCount(@Param("searchKey") String searchKey,
+                        @Param("year") String year,
                         @Param("province") String province,
                         @Param("city") String city,
                         @Param("district") String district,

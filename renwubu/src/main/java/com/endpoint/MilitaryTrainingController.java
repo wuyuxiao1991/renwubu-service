@@ -28,7 +28,7 @@ public class MilitaryTrainingController {
    private TrainingMissionService trainingMissionService;
 
     /**
-     * 分页接口
+     * 训练任务详情表分页接口
      * @param request
      * @return
      */

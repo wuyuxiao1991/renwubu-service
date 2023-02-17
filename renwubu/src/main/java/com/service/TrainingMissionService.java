@@ -18,13 +18,13 @@ public class TrainingMissionService {
     private TrainingMissionMapper trainingMissionMapper;
 
     public List<TrainingMissionDetails> pageQuery(PageQueryTrainingDetailsRequest request) {
-        return trainingMissionMapper.pageQuery(request.getYear(),request.getProvince(), request.getCity(), request.getDistrict(), request.getIdentity(),
+        return trainingMissionMapper.pageQuery(request.getSearchKey(),request.getYear(),request.getProvince(), request.getCity(), request.getDistrict(), request.getIdentity(),
                 (request.getPageNumber() - 1) * request.getPageSize(), request.getPageSize());
     }
 
 
     public int queryNewsTotalCount(PageQueryTrainingDetailsRequest request) {
-        return trainingMissionMapper.queryTotalCount(request.getYear(),request.getProvince(),request.getCity(), request.getDistrict(),request.getIdentity());
+        return trainingMissionMapper.queryTotalCount(request.getSearchKey(),request.getYear(),request.getProvince(),request.getCity(), request.getDistrict(),request.getIdentity());
     }
 
 }

@@ -1,8 +1,6 @@
 package com.model.request;
 
 
-import com.model.dto.NewsDto;
-
 import java.util.List;
 
 /**
@@ -14,8 +12,8 @@ public class BasePageQueryResponse<T>{
     private List<T> list;
     private int totalCounts;
 
-    public BasePageQueryResponse(List<T> newsDtos, int totalCounts) {
-        this.list = newsDtos;
+    public BasePageQueryResponse(List<T> list, int totalCounts) {
+        this.list = list;
         this.totalCounts = totalCounts;
     }
 
