@@ -6,6 +6,7 @@ package com.model.request;
  */
 
 public class PageQueryTrainingDetailsRequest {
+    private String searchKey;
     private String year;
     private String province;
     private String city;
@@ -13,6 +14,14 @@ public class PageQueryTrainingDetailsRequest {
     private String identity;
     private Integer pageNumber;
     private Integer pageSize;
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
 
     public String getYear() {
         return year;

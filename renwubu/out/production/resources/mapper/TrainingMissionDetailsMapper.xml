@@ -10,14 +10,25 @@
         select * from training_mission_details
         <where>
             (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                province like "%"#{searchKey}"%"
+                or city like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                or team_branch_name like "%"#{searchKey}"%"
+                or affiliation like "%"#{searchKey}"%"
+                or team_type like "%"#{searchKey}"%"
+                or concentrated_training_place like "%"#{searchKey}"%"
+                )
+            </if>
             <if test="province!=null and province!=''">
-                and province = #{province}
+                and province like  "%"#{province}"%"
             </if>
             <if test="city!=null and city!=''">
-                and city = #{city}
+                and city  like  "%"#{city}"%"
             </if>
             <if test="district!=null and district!=''">
-                and district = #{district}
+                and district  like  "%"#{district}"%"
             </if>
             <if test="year!=null and year!=''">
                 and year = #{year}
@@ -31,14 +42,25 @@
         select count(*) from training_mission_details
         <where>
             (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                province like "%"#{searchKey}"%"
+                or city like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                or team_branch_name like "%"#{searchKey}"%"
+                or affiliation like "%"#{searchKey}"%"
+                or team_type like "%"#{searchKey}"%"
+                or concentrated_training_place like "%"#{searchKey}"%"
+                )
+            </if>
             <if test="province!=null and province!=''">
-                and province = #{province}
+                and province like  "%"#{province}"%"
             </if>
             <if test="city!=null and city!=''">
-                and city = #{city}
+                and city  like  "%"#{city}"%"
             </if>
             <if test="district!=null and district!=''">
-                and district = #{district}
+                and district  like  "%"#{district}"%"
             </if>
             <if test="year!=null and year!=''">
                 and year = #{year}
