@@ -10,6 +10,8 @@ build/
 !**/src/test/**
 application.log*
 paadaptormastercard.log*
+*/out
+
 
 ### STS ###
 .apt_generated
