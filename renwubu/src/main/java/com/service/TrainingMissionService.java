@@ -23,7 +23,7 @@ public class TrainingMissionService {
     }
 
 
-    public int queryNewsTotalCount(PageQueryTrainingDetailsRequest request) {
+    public int queryTotalCount(PageQueryTrainingDetailsRequest request) {
         return trainingMissionMapper.queryTotalCount(request.getSearchKey(),request.getYear(),request.getProvince(),request.getCity(), request.getDistrict(),request.getIdentity());
     }
 

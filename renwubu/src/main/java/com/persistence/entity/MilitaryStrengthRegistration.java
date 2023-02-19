@@ -210,17 +210,17 @@ public class MilitaryStrengthRegistration {
 	@TableField(value = "other_output")
 	public String otherOutput; 
 
-	@TableField(value = "basic_reuslt_ofsupport_military")
-	public String basicReusltOfsupportMilitary; 
+	@TableField(value = "basic_result_of_support_military")
+	public String basicResultOfSupportMilitary;
 
-	@TableField(value = "other_reuslt_of_support_military")
-	public String otherReusltOfSupportMilitary; 
+	@TableField(value = "other_result_of_support_military")
+	public String otherResultOfSupportMilitary;
 
-	@TableField(value = "basic_reuslt_of_military")
-	public String basicReusltOfMilitary; 
+	@TableField(value = "basic_result_of_military")
+	public String basicResultOfMilitary;
 
-	@TableField(value = "other_reuslt_of_military")
-	public String otherReusltOfMilitary; 
+	@TableField(value = "other_result_of_military")
+	public String otherResultOfMilitary;
 
 	@TableField(value = "district")
 	public String district; 

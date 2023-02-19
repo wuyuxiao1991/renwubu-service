@@ -40,7 +40,7 @@ public class MilitaryTrainingController {
             List<TrainingMissionDetails> list = trainingMissionService.pageQuery(request);
 
             //2.查询总记录数
-            int count = trainingMissionService.queryNewsTotalCount(request);
+            int count = trainingMissionService.queryTotalCount(request);
 
             return BaseResponse.ok(new BasePageQueryResponse<>(list, count));
         } catch (Exception e) {
