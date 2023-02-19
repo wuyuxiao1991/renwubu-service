@@ -2,7 +2,7 @@ debug: true
 
 
 server:
-  port: 8014
+  port: 8013
 
 management:
   endpoints:

@@ -9,8 +9,8 @@ build/
 !**/src/main/**
 !**/src/test/**
 application.log*
-paadaptormastercard.log*
-*/out
+*/out/*
+*/build/*
 
 
 ### STS ###

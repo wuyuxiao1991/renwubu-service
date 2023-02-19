@@ -32,7 +32,7 @@ public class EquipmentSupportController {
 
 
     /**
-     * 训练任务详情表分页接口
+     * 武器装备登记表分页接口
      *
      * @param request
      * @return
@@ -54,7 +54,7 @@ public class EquipmentSupportController {
     }
 
     /**
-     * 训练任务详情表分页接口
+     * 应急装备登记表分页接口
      *
      * @param request
      * @return
@@ -76,7 +76,7 @@ public class EquipmentSupportController {
     }
 
     /**
-     * 训练任务详情表分页接口
+     * 军民通用装备表分页接口
      *
      * @param request
      * @return
