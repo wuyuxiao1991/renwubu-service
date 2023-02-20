@@ -39,8 +39,8 @@ public class BaseArmedInstitutionRegistration {
 	@TableField(value = "management_relation")
 	public String managementRelation; 
 
-	@TableField(value = "rank")
-	public String rank; 
+	@TableField(value = "level")
+	public String level;
 
 	@TableField(value = "region_distribution")
 	public String regionDistribution; 

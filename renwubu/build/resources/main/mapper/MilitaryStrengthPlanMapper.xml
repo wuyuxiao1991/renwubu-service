@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.MilitaryStrengthPlanMapper">
+
+
+    <select id="pageQuery" resultType="com.persistence.entity.MilitaryStrengthPlan">
+        select * from military_strength_plan
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                plan_name like "%"#{searchKey}"%"
+                or execute_task_region like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or site_organizer like "%"#{searchKey}"%"
+                or related_guarantee like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                or identity like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="planName!=null and planName!=''">
+                and plan_name like  "%"#{planName}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount"  resultType="java.lang.Integer">
+        select count(*) from military_strength_plan
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                plan_name like "%"#{searchKey}"%"
+                or execute_task_region like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or site_organizer like "%"#{searchKey}"%"
+                or related_guarantee like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                or identity like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="planName!=null and planName!=''">
+                and plan_name like  "%"#{planName}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeleteStatus">
+        update military_strength_plan set deleted = 1 where id = #{id}
+    </update>
+
+
+</mapper>

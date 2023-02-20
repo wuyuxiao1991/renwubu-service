@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.EmergencyEquipmentRegistrationMapper">
+
+
+    <select id="pageQuery" resultType="com.persistence.entity.EmergencyEquipmentRegistration">
+        select * from emergency_equipment_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                equipment_name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                <!--                or use like "%"#{searchKey}"%"-->
+                or equipment_performance like "%"#{searchKey}"%"
+                or storage_place like "%"#{searchKey}"%"
+                or management_unit like "%"#{searchKey}"%"
+                or organization_type like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="equipmentPerformance!=null and equipmentPerformance!=''">
+                and equipment_performance like  "%"#{equipmentPerformance}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount"  resultType="java.lang.Integer">
+        select count(*) from emergency_equipment_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                equipment_name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                <!--                or use like "%"#{searchKey}"%"-->
+                or equipment_performance like "%"#{searchKey}"%"
+                or storage_place like "%"#{searchKey}"%"
+                or management_unit like "%"#{searchKey}"%"
+                or organization_type like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="equipmentPerformance!=null and equipmentPerformance!=''">
+                and equipment_performance like  "%"#{equipmentPerformance}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeleteStatus">
+        update emergency_equipment_registration set deleted = 1 where id = #{id}
+    </update>
+
+
+</mapper>

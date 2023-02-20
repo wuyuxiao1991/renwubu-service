@@ -120,6 +120,9 @@ public class ZhuanwuLeaderRegistration {
 	@TableField(value = "identity")
 	public String identity;
 
+	@TableField(value = "deleted")
+	public boolean deleted;
+
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	public LocalDateTime createTime;
 	@TableField(value = "create_time", fill = FieldFill.UPDATE)

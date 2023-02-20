@@ -5,6 +5,46 @@
 
 <mapper namespace="com.persistence.mapper.TeamDetailMapper">
 
+
+    <select id="pageQuery" resultType="com.persistence.entity.TeamDetail">
+        select * from team_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or task like "%"#{searchKey}"%"
+                or professional_type like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity = #{identity}
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+        select count(*) from team_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or task like "%"#{searchKey}"%"
+                or professional_type like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+
     <select id="findByNameAndIdentity" resultType="com.persistence.entity.TeamDetail">
         select * from team_detail
         <where>
@@ -15,7 +55,7 @@
                 name=#{name}
             </if>
             <if test="identity!=null and identity!=''">
-                and identity like #{identity}
+                and identity like "%"#{identity}"%"
             </if>
         </where>
         order by create_time

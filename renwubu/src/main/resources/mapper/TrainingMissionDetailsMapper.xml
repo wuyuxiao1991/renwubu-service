@@ -31,7 +31,7 @@
                 and district  like  "%"#{district}"%"
             </if>
             <if test="year!=null and year!=''">
-                and year = #{year}
+                and year like  "%"#{year}"%"
             </if>
         </where>
         order by create_time desc limit #{offset}, #{pageSize}
@@ -63,7 +63,7 @@
                 and district  like  "%"#{district}"%"
             </if>
             <if test="year!=null and year!=''">
-                and year = #{year}
+                and year like  "%"#{year}"%"
             </if>
         </where>
     </select>

@@ -15,6 +15,13 @@ import java.util.List;
 public interface TeamDetailMapper extends BaseMapper<TeamDetail> {
 
 
+    List<TeamDetail> pageQuery(@Param("searchKey") String searchKey,
+                               @Param("identity") String identity,
+                               @Param("offset") int offset, @Param("pageSize") int pageSize);
+
+    int queryTotalCount(@Param("searchKey") String searchKey,
+                        @Param("identity") String identity);
+
     List<TeamDetail> findByNameAndIdentity(@Param("name") String name, @Param("identity") String identity);
 
     int updateDeleteStatus(String id);

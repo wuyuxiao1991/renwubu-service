@@ -93,8 +93,8 @@ public class PeopleDetail {
 	@TableField(value = "position_when_retire")
 	public String positionWhenRetire; 
 
-	@TableField(value = "millitary_rank_when_retire")
-	public String millitaryRankWhenRetire; 
+	@TableField(value = "military_rank_when_retire")
+	public String militaryRankWhenRetire;
 
 	@TableField(value = "local_profession_type_1")
 	public String localProfessionType1; 

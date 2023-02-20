@@ -27,7 +27,7 @@
                 and equipment_name like  "%"#{equipmentName}"%"
             </if>
             <if test="identity!=null and identity!=''">
-                and identity = #{identity}
+                and identity like "%"#{identity}"%"
             </if>
         </where>
         order by create_time desc limit #{offset}, #{pageSize}
@@ -43,7 +43,7 @@
                 equipment_name like "%"#{searchKey}"%"
                 or type like "%"#{searchKey}"%"
                 or quality_level like "%"#{searchKey}"%"
-<!--                or use like "%"#{searchKey}"%"-->
+                <!--                or use like "%"#{searchKey}"%"-->
                 or equipment_performance like "%"#{searchKey}"%"
                 or storage_place like "%"#{searchKey}"%"
                 or management_unit like "%"#{searchKey}"%"
@@ -55,7 +55,7 @@
                 and equipment_name like  "%"#{equipmentName}"%"
             </if>
             <if test="identity!=null and identity!=''">
-                and identity = #{identity}
+                and identity like "%"#{identity}"%"
             </if>
         </where>
     </select>
