@@ -95,7 +95,7 @@ public class PoliticalWorkController {
     }
 
     /**
-     * 专武干部登记表分页接口
+     * 民兵干部登记表分页接口
      *
      * @param request
      * @return
