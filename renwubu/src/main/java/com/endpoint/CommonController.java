@@ -31,7 +31,6 @@ public class CommonController {
     public BaseResponse<Boolean> deleteItem(@RequestBody DeleteItemRequest request) {
         try {
             commonService.deleteItem(request);
-
             return BaseResponse.ok(true);
         } catch (Exception e) {
             return BaseResponse.failed(e.getLocalizedMessage());
