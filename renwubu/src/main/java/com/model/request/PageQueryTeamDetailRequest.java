@@ -7,6 +7,7 @@ package com.model.request;
 
 public class PageQueryTeamDetailRequest {
     private String searchKey;
+
     private String identity;
     private Integer pageNumber;
     private Integer pageSize;

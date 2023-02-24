@@ -30,6 +30,7 @@ public class CommonController {
     @PostMapping("/delete_item")
     public BaseResponse<Boolean> deleteItem(@RequestBody DeleteItemRequest request) {
         try {
+
             commonService.deleteItem(request);
             return BaseResponse.ok(true);
         } catch (Exception e) {

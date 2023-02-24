@@ -3,7 +3,11 @@
 /workspace.xml
 HELP.md
 .gradle
+.gradle/
 build/
+*/build/
+gradlew
+gradlew.bat
 */build
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
