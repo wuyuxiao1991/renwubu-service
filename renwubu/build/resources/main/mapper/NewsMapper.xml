@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.NewsMapper">
+
+    <select id="findBySubmenuGuid" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        where submenu_guid = #{submenu_guid} and  (deleted ='0' or deleted is null) order by create_time
+    </select>
+
+
+    <select id="findByGuid" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        where news_guid = #{news_guid} and  (deleted ='0' or deleted is null) order by create_time
+    </select>
+
+    <select id="pageQueryNews" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        <where>
+            (deleted ='0' or deleted is null)
+            and submenu_guid in
+            <if test="submenuGuids.size > 0">
+            <foreach collection="submenuGuids" item="item" open="(" separator="," close=")">#{item}
+            </foreach>
+            </if>
+            <if test="submenuGuids.size == 0">
+               ('')
+            </if>
+            <if test="searchKey!=null and searchKey!=''">
+                and title like concat('%',#{searchKey},'%')
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryNewsTotalCount"  resultType="java.lang.Integer">
+        select count(*) from news
+        <where>
+            (deleted ='0' or deleted is null)
+            and submenu_guid in
+            <if test="submenuGuids.size > 0">
+                <foreach collection="submenuGuids" item="item" open="(" separator="," close=")">#{item}
+                </foreach>
+            </if>
+            <if test="submenuGuids.size == 0">
+                ('')
+            </if>
+            <if test="searchKey!=null and searchKey!=''">
+                and title like concat('%',#{searchKey},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findBySubmenuGuidAndTitle" resultType="com.persistence.entity.News">
+        select
+        id,
+        news_guid,
+        submenu_guid,
+        title,
+        text,
+        images,
+        deliver_user_name,
+        create_time,
+        update_time
+        from news
+        where submenu_guid = #{submenuGuid} and title = #{title}
+        and  (deleted ='0' or deleted is null) order by create_time desc
+    </select>
+
+
+    <update id="updateDeleteStatus">
+        update news set deleted = 1 where news_guid = #{newsGuid}
+    </update>
+
+</mapper>
