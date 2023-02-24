@@ -1,0 +1,65 @@
+
+spring:
+  jpa:
+      show-sql: true
+  profiles:
+    active: local
+  application:
+    name: demo
+  servlet:
+      multipart:
+        maxFileSize: -1
+        maxRequestSize: -1
+  #  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 30
+#      minimum-idle: 10
+#      idle-timeout: 60000 # 1 MIN
+#      max-lifetime: 600000 # 10 MIN
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/new_schema_1
+    username: wuyuxiao
+    password: mysql
+    driverClassName: com.mysql.cj.jdbc.Driver
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+    # Hikari 连接池配置
+    # 最小空闲连接数量
+    hikari:
+      minimum-idle: 5
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 20
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 连接池名称
+      pool-name: MyHikariCP
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+image:
+  url: "G:/apache-tomcat-9.0.71/apache-tomcat-9.0.71/webapps/images/"
+#  jpa:
+#    open-in-view: false
+#    properties:
+#      hibernate:
+#        jdbc:
+#          time_zone: UTC
+#        temp:
+#          use_jdbc_metadata_defaults: false
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+#
+#mybatis:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+mybatis-plus:
+   configuration:
+     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
