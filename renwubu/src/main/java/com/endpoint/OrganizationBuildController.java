@@ -96,6 +96,30 @@ public class OrganizationBuildController {
     }
 
     /**
+     * 新增一条添加人员详细表的方法
+     * @param request
+     * @return
+     */
+    @PostMapping("/add_people_detail")
+    public BaseResponse<Boolean> addPeopleDetail(@RequestBody AddPeopleDetailRequest request){
+        try {
+
+
+        // 判重
+        List<PeopleDetail> peopleDetails=organizationBuildService.getPeopleDetail(request.getIdNumber(), request.getIdentity());
+        if (!peopleDetails.isEmpty()) {
+            return BaseResponse.failed("不能添加重复数据！");
+        }
+        // 新增
+        organizationBuildService.addPeopleDetail(request);
+        return BaseResponse.ok();
+        }catch (Exception e){
+           return BaseResponse.failed(e.getLocalizedMessage());
+        }
+
+    }
+
+    /**
      * 删除
      * @param request
      * @return

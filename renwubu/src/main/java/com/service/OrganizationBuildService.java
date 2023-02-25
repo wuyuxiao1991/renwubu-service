@@ -1,10 +1,7 @@
 package com.service;
 
 
-import com.model.request.AddTeamDetailRequest;
-import com.model.request.DeleteTeamDetailRequest;
-import com.model.request.PageQueryPeopleDetailRequest;
-import com.model.request.PageQueryTeamDetailRequest;
+import com.model.request.*;
 import com.persistence.entity.PeopleDetail;
 import com.persistence.entity.TeamDetail;
 import com.persistence.mapper.PeopleDetailMapper;
@@ -48,12 +45,21 @@ public class OrganizationBuildService {
     public List<TeamDetail> getTeamDetail(String name, String identity) {
         return teamDetailMapper.findByNameAndIdentity(name, identity);
     }
+    /**/
+    public List<PeopleDetail> getPeopleDetail(String idNumber,String identity){
+        return peopleDetailMapper.findByIdCardAndIdentity(idNumber, identity);
+    }
 
 
     public void addTeamDetail(AddTeamDetailRequest request) {
         TeamDetail teamDetail = new TeamDetail();
         BeanUtils.copyProperties(request, teamDetail);
         teamDetailMapper.insert(teamDetail);
+    }
+    public void addPeopleDetail(AddPeopleDetailRequest request){
+        PeopleDetail peopleDetail=new PeopleDetail();
+        BeanUtils.copyProperties(request,peopleDetail);
+        peopleDetailMapper.insert(peopleDetail);
     }
 
 
