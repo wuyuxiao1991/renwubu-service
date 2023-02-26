@@ -1,5 +1,7 @@
 
 spring:
+  jpa:
+      show-sql: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/new_schema_1
@@ -23,8 +25,6 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-  jpa:
-      show-sql: true
   profiles:
     active: local
   application:

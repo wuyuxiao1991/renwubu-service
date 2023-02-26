@@ -10,6 +10,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface CommonMapper {
 
-    int updateDeleteStatus(@Param("id") String id, @Param("tableName") String tableName);
+    int deleteItem(@Param("id") String id, @Param("tableName") String tableName);
 
 }

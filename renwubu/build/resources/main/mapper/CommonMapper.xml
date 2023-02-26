@@ -5,7 +5,7 @@
 
 <mapper namespace="com.persistence.mapper.CommonMapper">
 
-    <update id="updateDeleteStatus">
+    <update id="deleteItem">
         update ${tableName} set deleted = 1 where id = #{id}
     </update>
 

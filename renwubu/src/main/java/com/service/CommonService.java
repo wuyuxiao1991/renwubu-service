@@ -15,7 +15,7 @@ public class CommonService {
     private CommonMapper commonMapper;
 
     public void deleteItem(DeleteItemRequest request) {
-        commonMapper.updateDeleteStatus(request.getId(), request.getTableName());
+        commonMapper.deleteItem(request.getId(), request.getTableName());
     }
 
 }

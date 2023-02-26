@@ -2,29 +2,12 @@
 spring:
   jpa:
       show-sql: true
-  profiles:
-    active: local
-  application:
-    name: demo
-  servlet:
-      multipart:
-        maxFileSize: -1
-        maxRequestSize: -1
-  #  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    hikari:
-#      maximum-pool-size: 30
-#      minimum-idle: 10
-#      idle-timeout: 60000 # 1 MIN
-#      max-lifetime: 600000 # 10 MIN
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/new_schema_1
     username: wuyuxiao
     password: mysql
     driverClassName: com.mysql.cj.jdbc.Driver
-    database-platform: org.hibernate.dialect.MySQLDialect
-
     # Hikari 连接池配置
     # 最小空闲连接数量
     hikari:
@@ -42,6 +25,22 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  profiles:
+    active: local
+  application:
+    name: demo
+  servlet:
+      multipart:
+        maxFileSize: -1
+        maxRequestSize: -1
+  #  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 30
+#      minimum-idle: 10
+#      idle-timeout: 60000 # 1 MIN
+#      max-lifetime: 600000 # 10 MIN
+
 
 image:
   url: "G:/apache-tomcat-9.0.71/apache-tomcat-9.0.71/webapps/images/"
