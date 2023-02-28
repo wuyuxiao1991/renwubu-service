@@ -55,8 +55,11 @@ dependencies {
     compileOnly 'javax.el:javax.el-api:3.0.0'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.63'
+}
 
-
+task cleanBuildDir(type: Delete) {
+    delete "${projectDir}/build"
+    delete "${projectDir}/out"
 }
 
 

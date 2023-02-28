@@ -1,15 +1,13 @@
 package com.model.request;
 
 
-import lombok.Data;
-
 /**
  * @author wuyuxiao
  */
 
 public class AddOrUpdateRequest {
     private String title;
-    private String submenuGuid;
+    private String thirdMenuGuid;
     private String deliverUserName;
     private String text;
 
@@ -21,12 +19,12 @@ public class AddOrUpdateRequest {
         this.title = title;
     }
 
-    public String getSubmenuGuid() {
-        return submenuGuid;
+    public String getThirdMenuGuid() {
+        return thirdMenuGuid;
     }
 
-    public void setSubmenuGuid(String submenuGuid) {
-        this.submenuGuid = submenuGuid;
+    public void setThirdMenuGuid(String thirdMenuGuid) {
+        this.thirdMenuGuid = thirdMenuGuid;
     }
 
     public String getText() {

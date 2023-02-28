@@ -6,16 +6,8 @@ package com.model.request;
  */
 
 public class GetMenuRequest {
-    private String name;
     private String identity;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getIdentity() {
         return identity;

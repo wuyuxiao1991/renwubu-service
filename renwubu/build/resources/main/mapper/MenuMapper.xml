@@ -5,25 +5,26 @@
 
 <mapper namespace="com.persistence.mapper.MenuMapper">
 
-    <select id="findByNameAndIdentity" resultType="com.persistence.entity.Menu">
-        select
-        id,
-        menu_guid,
-        name,
-        type,
-        identity,
-        create_time,
-        update_time
-        from menu
+    <select id="findByGuid" resultType="com.persistence.entity.Menu">
+        select * from menu
         <where>
             <!-- test：判断表达式（OGNL）
             遇见特殊符号应该去写转义字符：&&、''等字符
             -->
-            <if test="name!=null and name!=''">
-                name=#{name}
-            </if>
+                 menu_guid like #{guid}
+        </where>
+        order by create_time
+    </select>
+
+
+    <select id="findByIdentity" resultType="com.persistence.entity.Menu">
+        select * from menu
+        <where>
+            <!-- test：判断表达式（OGNL）
+            遇见特殊符号应该去写转义字符：&&、''等字符
+            -->
             <if test="identity!=null and identity!=''">
-                and identity like #{identity}
+                and identity like  "%"#{identity}"%"
             </if>
         </where>
         order by create_time

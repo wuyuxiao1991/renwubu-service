@@ -1,6 +1,7 @@
 package com.model.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author wuyuxiao
@@ -9,7 +10,8 @@ import java.time.LocalDateTime;
 public class NewsDto {
     String newsGuid;
     String title;
-    String submenuName;
+    String text;
+    List<String> images;
     String deliverUserName;
     LocalDateTime createTime;
 
@@ -19,14 +21,6 @@ public class NewsDto {
 
     public void setNewsGuid(String newsGuid) {
         this.newsGuid = newsGuid;
-    }
-
-    public String getSubmenuName() {
-        return submenuName;
-    }
-
-    public void setSubmenuName(String submenuName) {
-        this.submenuName = submenuName;
     }
 
     public String getTitle() {
@@ -51,6 +45,22 @@ public class NewsDto {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
 

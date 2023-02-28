@@ -7,7 +7,6 @@ import com.model.request.AddOrUpdateRequest;
 import com.persistence.entity.News;
 import com.persistence.mapper.NewsMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,17 +19,16 @@ import java.util.stream.Collectors;
  */
 @Service
 public class NewsService {
-    @Autowired
-    private SubmenuService submenuService;
+
     @Resource
     private NewsMapper newsMapper;
 
-    public List<NewsDetail> getNewsBySubmenuGuid(String submenuGuid) {
-        return newsMapper.findBySubmenuGuid(submenuGuid).stream().map(this::toDetail).collect(Collectors.toList());
+    public List<NewsDetail> getNewsByThirdMenuGuid(String thirdMenuGuid) {
+        return newsMapper.findByThirdMenuGuid(thirdMenuGuid).stream().map(this::toDetail).collect(Collectors.toList());
     }
 
-    public List<News> getNewsBySubmenuGuidAndTitle(String submenuGuid, String title) {
-        return newsMapper.findBySubmenuGuidAndTitle(submenuGuid, title);
+    public List<News> getNewsByThirdMenuGuidAndTitle(String thirdMenuGuid, String title) {
+        return newsMapper.findBythirdMenuGuidAndTitle(thirdMenuGuid, title);
     }
 
 
@@ -43,17 +41,17 @@ public class NewsService {
     }
 
 
-    public List<NewsDto> pageQueryNews(List<String> submenuGuids, String searchKey, int pageNumber, int pageSize) {
-        List<News> newsList = newsMapper.pageQueryNews(submenuGuids, searchKey, (pageNumber - 1) * pageSize, pageSize);
+    public List<NewsDto> pageQueryNews(String thirdMenuGuid, String searchKey, int pageNumber, int pageSize) {
+        List<News> newsList = newsMapper.pageQueryNews(thirdMenuGuid, searchKey, (pageNumber - 1) * pageSize, pageSize);
         return newsList.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    public int queryNewsTotalCount(List<String> submenuGuids, String searchKey) {
-        return newsMapper.queryNewsTotalCount(submenuGuids, searchKey);
+    public int queryNewsTotalCount(String thirdMenuGuid, String searchKey) {
+        return newsMapper.queryNewsTotalCount(thirdMenuGuid, searchKey);
     }
 
     public NewsDetail addOrUpdateNews(AddOrUpdateRequest request, List<String> imageUrls) {
-        List<News> newsList = getNewsBySubmenuGuidAndTitle(request.getSubmenuGuid(), request.getTitle());
+        List<News> newsList = getNewsByThirdMenuGuidAndTitle(request.getThirdMenuGuid(), request.getTitle());
         News news;
         if (!newsList.isEmpty()) {
             news = newsList.get(0);
@@ -90,7 +88,7 @@ public class NewsService {
         news.newsGuid = UUID.randomUUID().toString();
         news.title = request.getTitle();
         news.images = JSON.toJSONString(imageUrls);
-        news.submenuGuid = request.getSubmenuGuid();
+        news.thirdMenuGuid = request.getThirdMenuGuid();
         news.deliverUserName = request.getDeliverUserName();
         news.text = request.getText();
         return news;
@@ -103,8 +101,9 @@ public class NewsService {
         NewsDto newsDto = new NewsDto();
         newsDto.setNewsGuid(news.newsGuid);
         newsDto.setTitle(news.title);
+        newsDto.setText(news.text);
+        newsDto.setImages(JSON.parseObject(news.images, List.class));
         newsDto.setDeliverUserName(news.deliverUserName);
-        newsDto.setSubmenuName(submenuService.getSubmenusByGuid(news.submenuGuid).name);
         newsDto.setCreateTime(news.createTime);
         return newsDto;
     }
@@ -115,7 +114,6 @@ public class NewsService {
         }
         NewsDetail newsDetail = new NewsDetail();
         BeanUtils.copyProperties(news, newsDetail);
-        newsDetail.setSubmenuName(submenuService.getSubmenusByGuid(news.submenuGuid) != null ? submenuService.getSubmenusByGuid(news.submenuGuid).name : null);
         newsDetail.setImages(JSON.parseObject(news.images, List.class));
         return newsDetail;
     }

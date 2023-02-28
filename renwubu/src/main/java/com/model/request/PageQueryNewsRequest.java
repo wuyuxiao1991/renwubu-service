@@ -1,25 +1,23 @@
 package com.model.request;
 
 
-import lombok.Data;
-
 /**
  * @author wuyuxiao
  */
 
 public class PageQueryNewsRequest {
-    private String menuName;
+    private String thirdMenuGuid;
     private String searchKey;
     private Integer pageNumber;
     private Integer pageSize ;
     private String identity;
 
-    public String getMenuName() {
-        return menuName;
+    public String getThirdMenuGuid() {
+        return thirdMenuGuid;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setThirdMenuGuid(String thirdMenuGuid) {
+        this.thirdMenuGuid = thirdMenuGuid;
     }
 
     public String getSearchKey() {

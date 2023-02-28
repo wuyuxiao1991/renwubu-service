@@ -17,8 +17,8 @@ class News {
     Long id;
     @TableField(value = "news_guid")
     public String newsGuid;
-    @TableField(value = "submenu_guid")
-    public String submenuGuid;
+    @TableField(value = "third_menu_guid")
+    public String thirdMenuGuid;
     @TableField(value = "title")
     public String title;
     @TableField(value = "text")
@@ -42,12 +42,12 @@ class News {
         this.id = id;
     }
 
-    public String getSubmenuGuid() {
-        return submenuGuid;
+    public String getThirdMenuGuid() {
+        return thirdMenuGuid;
     }
 
-    public void setSubmenuGuid(String submenuGuid) {
-        this.submenuGuid = submenuGuid;
+    public void setThirdMenuGuid(String thirdMenuGuid) {
+        this.thirdMenuGuid = thirdMenuGuid;
     }
 
     public String getDeliverUserName() {

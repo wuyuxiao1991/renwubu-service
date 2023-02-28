@@ -16,7 +16,7 @@ public class Menu {
     @TableField(value = "menu_guid")
     public String menuGuid;
     @TableField(value = "name")
-    String name;
+    public String name;
     @TableField(value = "type")
     String type;
     @TableField(value = "identity")

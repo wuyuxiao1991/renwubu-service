@@ -9,8 +9,7 @@ public class NewsDetail {
     String newsGuid;
     String title;
     String text;
-    String submenuGuid;
-    String submenuName;
+    String thirdMenuGuid;
     String deliverUserName;
     List<String> images;
 
@@ -31,14 +30,6 @@ public class NewsDetail {
         this.title = title;
     }
 
-    public String getSubmenuName() {
-        return submenuName;
-    }
-
-    public void setSubmenuName(String submenuName) {
-        this.submenuName = submenuName;
-    }
-
     public String getText() {
         return text;
     }
@@ -47,12 +38,12 @@ public class NewsDetail {
         this.text = text;
     }
 
-    public String getSubmenuGuid() {
-        return submenuGuid;
+    public String getThirdMenuGuid() {
+        return thirdMenuGuid;
     }
 
-    public void setSubmenuGuid(String submenuGuid) {
-        this.submenuGuid = submenuGuid;
+    public void setThirdMenuGuid(String thirdMenuGuid) {
+        this.thirdMenuGuid = thirdMenuGuid;
     }
 
     public String getDeliverUserName() {

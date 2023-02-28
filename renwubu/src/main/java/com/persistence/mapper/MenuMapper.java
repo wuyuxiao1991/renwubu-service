@@ -15,10 +15,14 @@ import java.util.List;
 public interface MenuMapper extends BaseMapper<Menu> {
 
     /**
-     * @param name
+     * @param guid
+     * @return menu
+     */
+    Menu findByGuid(@Param("guid") String guid);
+
+    /**
      * @param identity
      * @return menu
      */
-    List<Menu> findByNameAndIdentity(@Param("name") String name, @Param("identity") String identity);
-
+    List<Menu> findByIdentituy(@Param("identity") String identity);
 }

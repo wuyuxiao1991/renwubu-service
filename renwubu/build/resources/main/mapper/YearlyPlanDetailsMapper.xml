@@ -10,14 +10,14 @@
         select * from yearly_plan_details
         <where>
             (deleted ='0' or deleted is null)
-            <if test="searchKey!=null and searchKey!=''">
-                and (
-                affiliation like "%"#{searchKey}"%"
-                or team_branch like "%"#{searchKey}"%"
-                or team_type like "%"#{searchKey}"%"
-                or concentrated_training_place like "%"#{searchKey}"%"
-                )
-            </if>
+<!--            <if test="searchKey!=null and searchKey!=''">-->
+<!--                and (-->
+<!--                affiliation like "%"#{searchKey}"%"-->
+<!--                or team_branch like "%"#{searchKey}"%"-->
+<!--                or team_type like "%"#{searchKey}"%"-->
+<!--                or concentrated_training_place like "%"#{searchKey}"%"-->
+<!--                )-->
+<!--            </if>-->
             <if test="year!=null and year!=''">
                 and year like  "%"#{year}"%"
             </if>

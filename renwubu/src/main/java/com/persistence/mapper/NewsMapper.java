@@ -14,19 +14,19 @@ import java.util.List;
 @Mapper
 public interface NewsMapper extends BaseMapper<News> {
 
-    List<News> findBySubmenuGuid(String submenuGuid);
+    List<News> findByThirdMenuGuid(String thirdMenuGuid);
 
     News findByGuid(String newsGuid);
 
 
-    List<News> findBySubmenuGuidAndTitle(@Param("submenuGuid") String submenuGuid, @Param("title") String title);
+    List<News> findBythirdMenuGuidAndTitle(@Param("thirdMenuGuid") String thirdMenuGuid, @Param("title") String title);
 
 
-    List<News> pageQueryNews(@Param("submenuGuids") List<String> submenuGuids,
+    List<News> pageQueryNews(@Param("thirdMenuGuid") String thirdMenuGuid,
                              @Param("searchKey") String searchKey,
                              @Param("offset") int offset, @Param("pageSize") int pageSize);
 
-    int queryNewsTotalCount(@Param("submenuGuids") List<String> submenuGuids,
+    int queryNewsTotalCount(@Param("thirdMenuGuid") String thirdMenuGuid,
                              @Param("searchKey") String searchKey);
 
     int updateDeleteStatus(String newsGuid);

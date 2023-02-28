@@ -16,13 +16,23 @@ public class MenuService {
     @Resource
     private MenuMapper menuMapper;
 
-    public Menu getMenus(String name, String identity) throws Exception{
-        List<Menu> result = menuMapper.findByNameAndIdentity(name, identity);
+    public Menu getMenuByGuid(String guid) throws Exception{
+        Menu result = menuMapper.findByGuid(guid);
+
+        if (result==null) {
+            throw new Exception("找不到该菜单！");
+        }
+
+        return result;
+    }
+
+    public List<Menu> getMenus(String identity) throws Exception{
+        List<Menu> result = menuMapper.findByIdentituy(identity);
 
         if (result.isEmpty()) {
             throw new Exception("找不到该菜单！");
         }
 
-        return result.get(0);
+        return result;
     }
 }
