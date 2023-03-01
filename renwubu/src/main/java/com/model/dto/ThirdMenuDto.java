@@ -2,7 +2,6 @@ package com.model.dto;
 
 import lombok.Data;
 
-import java.io.Serializable;
 
 /**
  * @author wuyuxiao
@@ -15,6 +14,22 @@ public class ThirdMenuDto  {
     public ThirdMenuDto(String thirdMenuGuid, String thirdMenuName) {
         this.thirdMenuGuid = thirdMenuGuid;
         this.thirdMenuName = thirdMenuName;
+    }
+
+    public String getThirdMenuName() {
+        return thirdMenuName;
+    }
+
+    public void setThirdMenuName(String thirdMenuName) {
+        this.thirdMenuName = thirdMenuName;
+    }
+
+    public String getThirdMenuGuid() {
+        return thirdMenuGuid;
+    }
+
+    public void setThirdMenuGuid(String thirdMenuGuid) {
+        this.thirdMenuGuid = thirdMenuGuid;
     }
 
 }

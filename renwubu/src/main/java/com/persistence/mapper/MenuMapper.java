@@ -24,5 +24,5 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @param identity
      * @return menu
      */
-    List<Menu> findByIdentituy(@Param("identity") String identity);
+    List<Menu> findByIdentity(@Param("identity") String identity);
 }

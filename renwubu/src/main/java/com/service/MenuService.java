@@ -27,7 +27,7 @@ public class MenuService {
     }
 
     public List<Menu> getMenus(String identity) throws Exception{
-        List<Menu> result = menuMapper.findByIdentituy(identity);
+        List<Menu> result = menuMapper.findByIdentity(identity);
 
         if (result.isEmpty()) {
             throw new Exception("找不到该菜单！");
