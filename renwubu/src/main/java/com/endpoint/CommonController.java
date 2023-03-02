@@ -3,12 +3,14 @@ package com.endpoint;
 
 import com.model.BaseResponse;
 import com.model.request.DeleteItemRequest;
+import com.model.request.UploadExcelRequest;
 import com.service.CommonService;
+import com.service.excelhandler.ExcelHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * 兵役服务
@@ -24,6 +26,7 @@ public class CommonController {
 
     /**
      * 删除
+     *
      * @param request
      * @return
      */
@@ -36,5 +39,27 @@ public class CommonController {
         } catch (Exception e) {
             return BaseResponse.failed(e.getLocalizedMessage());
         }
+    }
+
+
+    @Autowired
+    private List<ExcelHandler> excelHandlerList;
+
+    /**
+     * 人员详情表单上传接口
+     *
+     * @return
+     */
+    @PostMapping("/upload_excel")
+    public BaseResponse<Boolean> uploadExcel(@RequestPart(value = "file", required = false) MultipartFile file, @RequestPart("content") UploadExcelRequest
+            request) {
+        for (ExcelHandler excelHandler : excelHandlerList
+        ) {
+            if (excelHandler.getExcelType().equals(request.getType())) {
+                excelHandler.upload(file);
+            }
+        }
+        return BaseResponse.ok();
+
     }
 }

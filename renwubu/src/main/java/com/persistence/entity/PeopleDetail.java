@@ -75,11 +75,11 @@ public class PeopleDetail {
 	@TableField(value = "is_student_in_college")
 	public String isStudentInCollege; 
 
-	@TableField(value = "enlistment time")
+	@TableField(value = "enlistment_time")
 	public String enlistmentTime;
 
 	@TableField(value = "retire_time")
-	public String retireTime; 
+	public String   retireTime;
 
 	@TableField(value = "type_of_military")
 	public String typeOfMilitary; 
@@ -132,6 +132,6 @@ public class PeopleDetail {
 	public LocalDateTime updateTime;
 
 	@TableField(value = "deleted")
-	public boolean deleted; 
+	public Boolean deleted;
 }
 

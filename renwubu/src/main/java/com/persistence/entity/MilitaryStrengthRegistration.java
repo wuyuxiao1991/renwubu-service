@@ -141,7 +141,7 @@ public class MilitaryStrengthRegistration {
 	@TableField(value = "engineering_equipment")
 	public String engineeringEquipment; 
 
-	@TableField(value = "chemical prevention")
+	@TableField(value = "chemical_prevention")
 	public String chemicalPrevention;
 
 	@TableField(value = "other_for_dispatch_equipment")
