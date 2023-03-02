@@ -97,4 +97,30 @@ public class NewsController {
         }
     }
 
+    @PostMapping("/upload_images")
+    public BaseResponse<List<String>> uploadImages(@RequestPart(value = "images", required = false) MultipartFile[] files) {
+        try {
+            List<String> imageUrls = new ArrayList<>();
+            if (files != null) {
+                long count = Arrays.stream(files)
+                        .map(MultipartFile::getOriginalFilename).filter(Objects::nonNull).count();
+                if (count > 0) {
+                    for (MultipartFile picture : files) {
+                        String originalFilename = picture.getOriginalFilename();
+                        //todo 这里可以改变文件名
+                        //......
+                        //写文件
+                        String pathName = url + originalFilename;
+                        picture.transferTo(new File(pathName));
+                        imageUrls.add(pathName);
+                    }
+                }
+            }
+
+            return BaseResponse.ok(imageUrls);
+        } catch (Exception e) {
+            return BaseResponse.failed(e.getLocalizedMessage());
+        }
+    }
+
 }
