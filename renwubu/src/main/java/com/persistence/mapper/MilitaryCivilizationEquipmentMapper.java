@@ -26,5 +26,8 @@ public interface MilitaryCivilizationEquipmentMapper extends BaseMapper<Military
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+    List<MilitaryAndCivilianEquipmentRegistration>findMilitaryEquipmentNameAndType(@Param("equipmentName")String equipmentName,
+                                                                                   @Param("type")String type,
+                                                                                   @Param("identity")String identity);
 
 }

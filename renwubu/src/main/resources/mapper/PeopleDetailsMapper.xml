@@ -102,7 +102,7 @@
         <where>
             (deleted ='0' or deleted is null)
             <if test="idCard!=null and idCard!=''">
-              and  id_card=#{idCard}
+              and  id_number like "%"#{idCard}"%"
             </if>
             <if test="identity!=null and identity!=''">
                 and identity like "%"#{identity}"%"

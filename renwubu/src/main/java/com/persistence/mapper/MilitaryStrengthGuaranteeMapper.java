@@ -26,5 +26,8 @@ public interface MilitaryStrengthGuaranteeMapper extends BaseMapper<MilitaryStre
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+    List<MilitaryStrengthGuarantee> findRegistrationTaskAndRegistrationPerson(@Param("registrationTask")String registrationTask,
+                                                                              @Param("registrationPerson")String registrationPerson,
+                                                                              @Param("identity")String identity);
 
 }

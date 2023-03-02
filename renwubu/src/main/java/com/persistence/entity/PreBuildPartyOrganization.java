@@ -44,6 +44,6 @@ public class PreBuildPartyOrganization {
 	public LocalDateTime updateTime;
 
 	@TableField(value = "deleted")
-	public boolean deleted; 
+	public boolean deleted;
 }
 

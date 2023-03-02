@@ -95,6 +95,32 @@
             </if>
         </where>
     </select>
+    <select id="findWorkAndPositionAndNameAndPoliticalStatus" resultType="com.persistence.entity.MinbingLeaderRegistration">
+        select * from minbing_leader_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="work!=null and work!=''">
+                and work like "%"#{work}"%"
+            </if>
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="position!=null and position!=''">
+                and position like "%"#{position}"%"
+            </if>
+            <if test="politicalStatus!=null and politicalStatus!=''">
+                and political_status like "%"#{politicalStatus}"%"
+            </if>
+
+            <if test="phone!=null and phone!=''">
+                and phone like "%"#{phone}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 
 
     <update id="updateDeleteStatus">

@@ -59,6 +59,19 @@
             </if>
         </where>
     </select>
+    <select id="findIdNumber" resultType="com.persistence.entity.MilitaryServiceRegistration">
+        select * from military_service_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="idNumber!=null and idNumber!=''">
+                and id_number like  "%"#{idNumber}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 
     <update id="updateDeleteStatus">
         update military_service_registration set deleted = 1 where id = #{id}

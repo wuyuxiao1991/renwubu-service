@@ -35,5 +35,8 @@ public interface ZhuanwuLeaderRegistrationMapper extends BaseMapper<ZhuanwuLeade
 
 
     int updateDeleteStatus(String id);
-
+    List<ZhuanwuLeaderRegistration> findWorkAndNameAndIdNumberAndPhoneAndIdentity(
+                                                                                  @Param("idNumber")String idNumber,
+                                                                                  @Param("identity") String identity
+                                                                                  );
 }

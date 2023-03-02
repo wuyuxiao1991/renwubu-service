@@ -40,5 +40,8 @@ public interface BaseArmedInstitutionRegistrationMapper extends BaseMapper<BaseA
 
 
     int updateDeleteStatus(String id);
+    List<BaseArmedInstitutionRegistration> findNameAndTypeAndPlaceAndIdentity(@Param("name") String name,
+                                                              @Param("type") String type,
+                                                              @Param("identity") String identity);
 
 }

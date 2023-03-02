@@ -25,5 +25,8 @@ public interface ArmsEquipmentRegistrationMapper extends BaseMapper<ArmsEquipmen
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+    List<ArmsEquipmentRegistration> findEquipmentNameAndType(@Param("equipmentName")String equipmentName,
+                                                             @Param("type")String type,
+                                                             @Param("identity")String identity);
 
 }

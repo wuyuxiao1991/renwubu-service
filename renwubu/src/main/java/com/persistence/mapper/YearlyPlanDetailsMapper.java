@@ -1,6 +1,7 @@
 package com.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.persistence.entity.PeopleDetail;
 import com.persistence.entity.TrainingMissionDetails;
 import com.persistence.entity.YearlyPlanDetails;
 import org.apache.ibatis.annotations.Mapper;
@@ -28,5 +29,6 @@ public interface YearlyPlanDetailsMapper extends BaseMapper<YearlyPlanDetails> {
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+    List<YearlyPlanDetails> findYearMonthAndTeamBranch(@Param("year") String year,@Param("month") String month,@Param("teamBranch") String teamBranch,@Param("identity") String identity);
 
 }

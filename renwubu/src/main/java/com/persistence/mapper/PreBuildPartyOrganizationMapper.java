@@ -26,5 +26,7 @@ public interface PreBuildPartyOrganizationMapper extends BaseMapper<PreBuildPart
 
 
     int updateDeleteStatus(String id);
+    List<PreBuildPartyOrganization> findPartyNameAndApprovalByAndTeamAndIdentity
+            (@Param("partyOrganizationName") String partyOrganizationName,@Param("identity")String identity);
 
 }

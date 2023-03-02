@@ -32,4 +32,7 @@ public interface TrainingMissionDetailMapper extends BaseMapper<TrainingMissionD
 
     int updateDeleteStatus(String id);
 
+    List<TrainingMissionDetails> findByTeamTypeAndTeamBranchNameAndIdentity(@Param("teamType") String teamType,@Param("teamBranchName") String teamBranchName,@Param("identity") String identity);
+
+
 }

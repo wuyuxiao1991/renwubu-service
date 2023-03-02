@@ -90,6 +90,22 @@
             </if>
         </where>
     </select>
+    <select id="findNameAndTypeAndPlaceAndIdentity" resultType="com.persistence.entity.BaseArmedInstitutionRegistration">
+        select * from base_armed_institution_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="type!=null and type!=''">
+                and type = "%"#{type}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
 
     <update id="updateDeleteStatus">
         update base_armed_institution_registration set deleted = 1 where id = #{id}

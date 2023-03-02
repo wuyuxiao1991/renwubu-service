@@ -36,5 +36,11 @@ public interface MinbingLeaderRegistrationMapper extends BaseMapper<MinbingLeade
 
 
     int updateDeleteStatus(String id);
-
+    List<MinbingLeaderRegistration> findWorkAndPositionAndNameAndPoliticalStatus(@Param("work")String work,
+                                                                                 @Param("position")String position,
+                                                                                 @Param("name") String name,
+                                                                                 @Param("politicalStatus")String politicalStatus,
+                                                                                 @Param("phone")String phone,
+                                                                                 @Param("teamNameAndPosition")String teamNameAndPosition,
+                                                                                 @Param("identity")String identity);
 }

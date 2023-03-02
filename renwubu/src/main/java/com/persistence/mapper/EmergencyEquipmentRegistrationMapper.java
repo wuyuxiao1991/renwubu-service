@@ -13,7 +13,7 @@ import java.util.List;
  * @author wuyuxiao
  */
 @Mapper
-public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<ArmsEquipmentRegistration> {
+public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<EmergencyEquipmentRegistration> {
 
 
     List<EmergencyEquipmentRegistration> pageQuery(@Param("searchKey") String searchKey,
@@ -26,5 +26,8 @@ public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<ArmsEqu
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+    List<EmergencyEquipmentRegistration> findEquipmentNameAndType(@Param("equipmentName")String equipmentName,
+                                                                  @Param("type")String type,
+                                                                  @Param("identity")String identity);
 
 }

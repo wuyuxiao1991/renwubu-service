@@ -57,6 +57,22 @@
             </if>
         </where>
     </select>
+    <select id="findEquipmentNameAndType" resultType="com.persistence.entity.EmergencyEquipmentRegistration">
+        select * from emergency_equipment_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="equipmentName!=null and equipmentName!=''">
+                and equipment_name like  "%"#{equipmentName}"%"
+            </if>
+            <if test="type!=null and type!=''">
+                and type like  "%"#{type}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 
     <update id="updateDeleteStatus">
         update emergency_equipment_registration set deleted = 1 where id = #{id}

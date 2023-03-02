@@ -55,6 +55,22 @@
             </if>
         </where>
     </select>
+    <select id="findRegistrationTaskAndRegistrationPerson" resultType="com.persistence.entity.MilitaryStrengthGuarantee">
+        select * from military_strength_guarantee
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="registrationTask!=null and registrationTask!=''">
+                and registration_task like  "%"#{registrationTask}"%"
+            </if>
+            <if test="registrationPerson!=null and registrationPerson!=''">
+                and registration_person like  "%"#{registrationPerson}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 
     <update id="updateDeleteStatus">
         update military_strength_guarantee set deleted = 1 where id = #{id}

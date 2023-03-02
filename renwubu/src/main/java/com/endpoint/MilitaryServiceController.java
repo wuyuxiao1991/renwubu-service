@@ -2,9 +2,7 @@ package com.endpoint;
 
 
 import com.model.BaseResponse;
-import com.model.request.BasePageQueryResponse;
-import com.model.request.PageQueryMilitaryCivilizationEquipmentRequest;
-import com.model.request.PageQueryMilitaryServiceRegistrationRequest;
+import com.model.request.*;
 import com.persistence.entity.MilitaryAndCivilianEquipmentRegistration;
 import com.persistence.entity.MilitaryServiceRegistration;
 import com.service.MilitaryServiceService;
@@ -47,6 +45,21 @@ public class MilitaryServiceController {
 
             return BaseResponse.ok(new BasePageQueryResponse<>(list, count));
         } catch (Exception e) {
+            return BaseResponse.failed(e.getLocalizedMessage());
+        }
+    }
+    @PostMapping("/add_military_service_registration")
+    public BaseResponse<Boolean> addMilitaryServiceRegistration(@RequestBody AddMilitaryServiceRegistrationRequest request){
+        try {
+
+            List<MilitaryServiceRegistration> militaryServiceRegistrations = service.getMilitaryServiceRegistration(request.getIdNumber(), request.getIdentity());
+            if (!militaryServiceRegistrations.isEmpty()) {
+                return BaseResponse.failed("不能添加重复数据！");
+            }
+            // 如果在查询数据库后发现没有该数据,则增加该数据项
+            service.addMilitaryServiceRegistration(request);
+            return BaseResponse.ok();
+        }catch (Exception e){
             return BaseResponse.failed(e.getLocalizedMessage());
         }
     }
