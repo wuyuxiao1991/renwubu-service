@@ -3,6 +3,7 @@ package com.endpoint;
 
 import com.model.BaseResponse;
 import com.model.request.DeleteItemRequest;
+import com.model.request.DownloadExcelRequest;
 import com.model.request.UploadExcelRequest;
 import com.service.CommonService;
 import com.service.excelhandler.ExcelHandler;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -59,7 +61,25 @@ public class CommonController {
                 excelHandler.upload(file);
             }
         }
-        return BaseResponse.ok();
+        return BaseResponse.ok(true);
+
+    }
+
+    /**
+     * 人员详情表单下载接口
+     *
+     * @return
+     */
+    @PostMapping("/download")
+    public BaseResponse<String> downloadExcel(@RequestBody DownloadExcelRequest request) throws IOException {
+        String result = null;
+        for (ExcelHandler excelHandler : excelHandlerList
+        ) {
+            if (excelHandler.getExcelType().equals(request.getType())) {
+                result = excelHandler.download(request.getIdentity());
+            }
+        }
+        return BaseResponse.ok(result);
 
     }
 }

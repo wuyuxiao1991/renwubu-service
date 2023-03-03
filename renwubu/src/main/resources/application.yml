@@ -48,6 +48,16 @@ spring:
 
 image:
   url: "G:/apache-tomcat-9.0.71/apache-tomcat-9.0.71/webapps/images/"
+
+
+template:
+    url: "G:/apache-tomcat-9.0.71/apache-tomcat-9.0.71/webapps/templates/"
+
+
+downloadExcel:
+  url: "G:/apache-tomcat-9.0.71/apache-tomcat-9.0.71/webapps/download_excel/"
+  mappingUrl: "http:/localhost:8080/download_excel/"
+
 #  jpa:
 #    open-in-view: false
 #    properties:
@@ -67,6 +77,8 @@ mybatis-plus:
    configuration:
      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-logging:
-  file:
-    name: spring.log
+#logging:
+#  file:
+#    name: spring.log
+#
+#

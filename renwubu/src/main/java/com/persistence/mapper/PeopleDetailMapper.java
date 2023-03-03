@@ -29,8 +29,6 @@ public interface PeopleDetailMapper extends BaseMapper<PeopleDetail> {
                         @Param("phone") String phone,
                         @Param("identity") String identity);
 
-    List<TeamDetail> findByNameAndIdentity(@Param("name") String name, @Param("identity") String identity);
-
     int updateDeleteStatus(String id);
 
 }
