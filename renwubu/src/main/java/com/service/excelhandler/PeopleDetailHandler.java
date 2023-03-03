@@ -48,17 +48,39 @@ public class PeopleDetailHandler implements ExcelHandler {
     }
 
     @Override
-    public void upload(MultipartFile file) {
+    public void upload(MultipartFile file, String identity) {
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();
         for (int i = 5; i < rowNum; i++) {
             Row row = sheet.getRow(i);
-            insertPeopleDetail(row);
+            insertPeopleDetail(row, identity);
         }
     }
 
-    private void insertPeopleDetail(Row row) {
+    @Override
+    public String download(String identity) throws IOException {
+        //1.查出列表数据
+        List<PeopleDetail> peopleDetailList = peopleDetailMapper.pageQuery("", "", "", "", identity, 0, 100000000);
+
+        //2.填充workbook
+        Workbook wb = getWorkbook();
+        Sheet sheet = wb.getSheetAt(0);
+        for (int i = 0; i < peopleDetailList.size(); i++) {
+            fillRows(peopleDetailList.get(i), sheet, i);
+        }
+
+        //3.写入新文件
+        String downloadFilePath = url + "people_detail.xls";
+        FileOutputStream fileOut = new FileOutputStream(downloadFilePath);
+        wb.write(fileOut);
+        fileOut.close();
+
+        return mappingUrl + "people_detail.xls";
+    }
+
+
+    private void insertPeopleDetail(Row row, String identity) {
         PeopleDetail peopleDetail = new PeopleDetail();
         if (commonService.getCellValueByCell(row.getCell(1)).isEmpty()) {
             return;
@@ -96,33 +118,14 @@ public class PeopleDetailHandler implements ExcelHandler {
         peopleDetail.technicalTitle2 = commonService.getCellValueByCell(row.getCell(31));
         peopleDetail.professionDuration2 = commonService.getCellValueByCell(row.getCell(32));
         peopleDetail.direction = commonService.getCellValueByCell(row.getCell(33));
-        peopleDetail.identity = commonService.getCellValueByCell(row.getCell(34));
+        peopleDetail.identity = identity;
         //判重 击中了就continue
         peopleDetailMapper.insert(peopleDetail);
     }
 
-    @Override
-    public String download(String identity) throws IOException {
-        //1.查出列表数据
-        List<PeopleDetail> peopleDetailList = peopleDetailMapper.pageQuery("", "", "", "", identity, 0, 100000000);
-
-        //2.填充workbook据
-        Workbook wb = getWorkbook();
-        Sheet sheet = wb.getSheetAt(0);
-        for (int i = 0; i < peopleDetailList.size(); i++) {
-            fillRows(peopleDetailList.get(i), sheet, i);
-        }
-
-        //3.写入新文件
-        FileOutputStream fileOut = new FileOutputStream(url + "people_detail.xls");
-        wb.write(fileOut);
-        fileOut.close();
-
-        return mappingUrl + "/people_detail.xls";
-    }
-
     private Workbook getWorkbook() throws IOException {
-        FileInputStream inputStream = new FileInputStream(templateUrl + "people_detail.xls");
+        String peopleDetailTemplatePath = templateUrl + "people_detail.xls";
+        FileInputStream inputStream = new FileInputStream(peopleDetailTemplatePath);
         POIFSFileSystem fs = new POIFSFileSystem(inputStream);
         return new HSSFWorkbook(fs);
     }

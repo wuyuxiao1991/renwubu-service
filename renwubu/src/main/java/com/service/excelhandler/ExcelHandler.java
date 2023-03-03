@@ -11,7 +11,7 @@ import java.io.IOException;
 public interface ExcelHandler {
     public String getExcelType();
 
-    public void upload(MultipartFile file);
+    public void upload(MultipartFile file,String identity);
 
     public String download(String identity) throws IOException;
 

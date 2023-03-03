@@ -40,8 +40,8 @@ public class ArmsEquipmentRegistration {
 	@TableField(value = "quality_level")
 	public String qualityLevel; 
 
-	@TableField(value = "use")
-	public String use; 
+	@TableField(value = "purpose")
+	public String purpose;
 
 	@TableField(value = "warehousing_time")
 	public String warehousingTime; 
@@ -62,11 +62,10 @@ public class ArmsEquipmentRegistration {
 	public String organizationType; 
 
 	@TableField(value = "district")
-	public String district; 
+	public String district;
 
 	@TableField(value = "identity")
 	public String identity;
-
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	public LocalDateTime createTime;
 	@TableField(value = "create_time", fill = FieldFill.UPDATE)

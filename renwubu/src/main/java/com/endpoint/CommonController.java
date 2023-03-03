@@ -48,7 +48,7 @@ public class CommonController {
     private List<ExcelHandler> excelHandlerList;
 
     /**
-     * 人员详情表单上传接口
+     * 表单上传接口
      *
      * @return
      */
@@ -58,7 +58,7 @@ public class CommonController {
         for (ExcelHandler excelHandler : excelHandlerList
         ) {
             if (excelHandler.getExcelType().equals(request.getType())) {
-                excelHandler.upload(file);
+                excelHandler.upload(file,request.getIdentity());
             }
         }
         return BaseResponse.ok(true);
@@ -66,11 +66,11 @@ public class CommonController {
     }
 
     /**
-     * 人员详情表单下载接口
+     * 表单下载接口
      *
      * @return
      */
-    @PostMapping("/download")
+    @PostMapping("/download_excel")
     public BaseResponse<String> downloadExcel(@RequestBody DownloadExcelRequest request) throws IOException {
         String result = null;
         for (ExcelHandler excelHandler : excelHandlerList
