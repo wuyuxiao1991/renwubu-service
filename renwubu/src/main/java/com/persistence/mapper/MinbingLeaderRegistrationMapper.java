@@ -6,6 +6,7 @@ import com.persistence.entity.ZhuanwuLeaderRegistration;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -36,5 +37,8 @@ public interface MinbingLeaderRegistrationMapper extends BaseMapper<MinbingLeade
 
 
     int updateDeleteStatus(String id);
+
+    List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
+
 
 }

@@ -1,14 +1,11 @@
 package com.persistence.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.sql.*;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
  * arms_equipment_registration 实体类
@@ -35,7 +32,7 @@ public class ArmsEquipmentRegistration {
 	public String unit; 
 
 	@TableField(value = "number")
-	public String number; 
+	public String number;
 
 	@TableField(value = "quality_level")
 	public String qualityLevel; 

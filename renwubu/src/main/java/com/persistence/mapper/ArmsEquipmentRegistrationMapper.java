@@ -5,7 +5,9 @@ import com.persistence.entity.ArmsEquipmentRegistration;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -25,5 +27,7 @@ public interface ArmsEquipmentRegistrationMapper extends BaseMapper<ArmsEquipmen
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+
+    List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
 
 }

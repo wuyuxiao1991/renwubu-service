@@ -60,5 +60,15 @@
         update yearly_plan_details set deleted = 1 where id = #{id}
     </update>
 
-
+    <select id="groupBy" resultType="java.util.HashMap">
+        select team_branch , sum(cast(training_headcount as SIGNED) * cast(total_count AS signed)) as sum
+        from yearly_plan_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by team_branch;
+    </select>
 </mapper>

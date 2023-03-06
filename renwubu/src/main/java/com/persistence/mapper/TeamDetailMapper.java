@@ -5,6 +5,7 @@ import com.persistence.entity.TeamDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -25,5 +26,9 @@ public interface TeamDetailMapper extends BaseMapper<TeamDetail> {
     List<TeamDetail> findByNameAndIdentity(@Param("name") String name, @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+
+    List<HashMap<String, String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
+
+    List<HashMap<String, String>> groupByTeam(@Param("identity") String identity);
 
 }

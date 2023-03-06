@@ -65,4 +65,15 @@
     </update>
 
 
+    <select id="groupBy" resultType="java.util.HashMap">
+        select ${groupByField} , sum(cast(number as SIGNED)) as sum from arms_equipment_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by ${groupByField};
+    </select>
+
 </mapper>

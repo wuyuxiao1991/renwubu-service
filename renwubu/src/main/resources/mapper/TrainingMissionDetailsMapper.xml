@@ -72,5 +72,27 @@
         update team_detail set deleted = 1 where id = #{id}
     </update>
 
+    <select id="groupByTotalDayCount" resultType="java.util.HashMap">
+        select total_count , count(*) as count from training_mission_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by total_count;
+    </select>
+
+    <select id="groupByPlace" resultType="java.util.HashMap">
+        select concentrated_training_place , sum(cast(training_headcount as SIGNED) * cast(total_count AS signed)) as sum
+        from training_mission_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by concentrated_training_place;
+    </select>
 
 </mapper>

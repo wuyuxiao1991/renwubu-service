@@ -5,6 +5,7 @@ import com.persistence.entity.TrainingMissionDetails;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -31,5 +32,9 @@ public interface TrainingMissionDetailMapper extends BaseMapper<TrainingMissionD
                         @Param("identity") String identity);
 
     int updateDeleteStatus(String id);
+
+    List<HashMap<String, String>> groupByPlace(@Param("identity") String identity);
+
+    List<HashMap<String, String>> groupByTotalDayCount(@Param("identity") String identity);
 
 }
