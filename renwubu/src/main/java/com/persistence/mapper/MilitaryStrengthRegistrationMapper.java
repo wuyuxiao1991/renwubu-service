@@ -32,4 +32,10 @@ public interface MilitaryStrengthRegistrationMapper extends BaseMapper<MilitaryS
 
     int updateDeleteStatus(String id);
 
+    List<MilitaryStrengthRegistration> findRequiredByAndTaskTypeAndConcreteTask(@Param("requiredBy")String requiredBy,
+                                                                                @Param("taskType")String taskType,
+                                                                                @Param("concreteTask")String concreteTask,
+                                                                                @Param("identity")String identity);
+
+
 }

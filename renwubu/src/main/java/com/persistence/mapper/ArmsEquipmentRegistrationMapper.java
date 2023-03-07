@@ -2,6 +2,7 @@ package com.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.persistence.entity.ArmsEquipmentRegistration;
+import com.persistence.entity.BaseArmedInstitutionRegistration;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,5 +30,10 @@ public interface ArmsEquipmentRegistrationMapper extends BaseMapper<ArmsEquipmen
     int updateDeleteStatus(String id);
 
     List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
+
+    List<ArmsEquipmentRegistration> findEquipmentNameAndType(@Param("equipmentName")String equipmentName,
+                                                             @Param("type")String type,
+                                                             @Param("identity")String identity);
+
 
 }

@@ -31,5 +31,6 @@ public interface YearlyPlanDetailsMapper extends BaseMapper<YearlyPlanDetails> {
     int updateDeleteStatus(String id);
 
     List<HashMap<String, String>> groupBy(@Param("identity") String identity);
+    List<YearlyPlanDetails> findYearMonthAndTeamBranch(@Param("year") String year,@Param("month") String month,@Param("teamBranch") String teamBranch,@Param("identity") String identity);
 
 }

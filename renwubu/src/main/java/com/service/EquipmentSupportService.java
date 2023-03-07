@@ -1,15 +1,14 @@
 package com.service;
 
 
-import com.model.request.PageQueryArmsEquipmentRegistrationRequest;
-import com.model.request.PageQueryEmergencyEquipmentRegistrationRequest;
-import com.model.request.PageQueryMilitaryCivilizationEquipmentRequest;
+import com.model.request.*;
 import com.persistence.entity.ArmsEquipmentRegistration;
 import com.persistence.entity.EmergencyEquipmentRegistration;
 import com.persistence.entity.MilitaryAndCivilianEquipmentRegistration;
 import com.persistence.mapper.ArmsEquipmentRegistrationMapper;
 import com.persistence.mapper.EmergencyEquipmentRegistrationMapper;
 import com.persistence.mapper.MilitaryCivilizationEquipmentMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -52,6 +51,49 @@ public class EquipmentSupportService {
     public List<MilitaryAndCivilianEquipmentRegistration> pageQuery(PageQueryMilitaryCivilizationEquipmentRequest request) {
         return militaryCivilizationEquipmentMapper.pageQuery(request.getSearchKey(), request.getOrganizationType(), request.getIdentity(),
                 (request.getPageNumber() - 1) * request.getPageSize(), request.getPageSize());
+    }
+
+    /**
+     * 武器装备登记表
+     */
+    public List<ArmsEquipmentRegistration> getArmsEquipmentRegistration(String equipmentName,String type,String identity){
+        return armsEquipmentRegistrationMapper.findEquipmentNameAndType(equipmentName, type, identity);
+
+    }
+    public void addArmsEquipmentRegistration(AddArmsEquipmentRegistrationRequest request){
+        ArmsEquipmentRegistration armsEquipmentRegistration = new ArmsEquipmentRegistration();
+        BeanUtils.copyProperties(request,armsEquipmentRegistration);
+        armsEquipmentRegistrationMapper.insert(armsEquipmentRegistration);
+    }
+    /**
+     * 应急专用装备登记表
+     */
+    public List<EmergencyEquipmentRegistration> getEmergencyEquipmentRegistration(String equipmentName,String type,String identity){
+        return emergencyEquipmentRegistrationMapper.findEquipmentNameAndType(equipmentName, type, identity);
+    }
+    public void AddEmergencyEquipmentRegistration(AddEmergencyEquipmentRegistrationRequest request){
+        EmergencyEquipmentRegistration emergencyEquipmentRegistration = new EmergencyEquipmentRegistration();
+        BeanUtils.copyProperties(request,emergencyEquipmentRegistration);
+        emergencyEquipmentRegistrationMapper.insert(emergencyEquipmentRegistration);
+
+
+    }
+
+    /**
+     * 军民通用装备表
+     * @param equipmentName
+     * @param type
+     * @param identity
+     * @return
+     */
+    public List<MilitaryAndCivilianEquipmentRegistration>getMilitaryAndCivilianEquipmentRegistration(String equipmentName,String type,String identity){
+        return militaryCivilizationEquipmentMapper.findMilitaryEquipmentNameAndType(equipmentName, type, identity);
+
+    }
+    public void addMilitaryAndCivilianEquipmentRegistration(AddMilitaryAndCivilianEquipmentRegistrationRequest request){
+        MilitaryAndCivilianEquipmentRegistration militaryAndCivilianEquipmentRegistration = new MilitaryAndCivilianEquipmentRegistration();
+        BeanUtils.copyProperties(request,militaryAndCivilianEquipmentRegistration);
+        militaryCivilizationEquipmentMapper.insert(militaryAndCivilianEquipmentRegistration);
     }
 
 

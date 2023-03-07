@@ -27,4 +27,9 @@ public interface MilitaryStrengthPlanMapper extends BaseMapper<MilitaryStrengthP
 
     int updateDeleteStatus(String id);
 
+    List<MilitaryStrengthPlan>findPlanNameAndType(@Param("planName")String planName,
+                                                  @Param("type")String type,
+                                                  @Param("identity")String identity);
+
+
 }

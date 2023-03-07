@@ -2,18 +2,19 @@ package com.endpoint;
 
 
 import com.model.BaseResponse;
-import com.model.dto.NewsDto;
 import com.model.request.*;
-import com.persistence.entity.*;
+import com.persistence.entity.PeopleDetail;
+import com.persistence.entity.TeamDetail;
 import com.service.OrganizationBuildService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 组织建设
@@ -80,6 +81,10 @@ public class OrganizationBuildController {
     @PostMapping("/add_team_detail")
     public BaseResponse<Boolean> addTeamDetail(@RequestBody AddTeamDetailRequest request) {
         try {
+            //校验参数
+            if (ObjectUtils.isEmpty(request.getName())) {
+                return BaseResponse.failed("参数校验不通过！");
+            }
             //1.判重
             List<TeamDetail> teamDetails = organizationBuildService.getTeamDetail(request.getName(), request.getIdentity());
             if (!teamDetails.isEmpty()) {
@@ -97,6 +102,7 @@ public class OrganizationBuildController {
 
     /**
      * 删除
+     *
      * @param request
      * @return
      */
@@ -109,4 +115,33 @@ public class OrganizationBuildController {
             return BaseResponse.failed(e.getLocalizedMessage());
         }
     }
+
+    /**
+     * 新增一条添加人员详细表的方法
+     *
+     * @param request
+     * @return
+     */
+    @PostMapping("/add_people_detail")
+    public BaseResponse<Boolean> addPeopleDetail(@RequestBody AddPeopleDetailRequest request) {
+        try {
+            //校验参数
+            if (ObjectUtils.isEmpty(request.getIdNumber())) {
+                return BaseResponse.failed("参数校验不通过！");
+            }
+
+            // 判重
+            List<PeopleDetail> peopleDetails = organizationBuildService.getPeopleDetail(request.getIdNumber(), request.getIdentity());
+            if (!peopleDetails.isEmpty()) {
+                return BaseResponse.failed("不能添加重复数据！");
+            }
+            // 新增
+            organizationBuildService.addPeopleDetail(request);
+            return BaseResponse.ok();
+        } catch (Exception e) {
+            return BaseResponse.failed(e.getLocalizedMessage());
+        }
+
+    }
+
 }

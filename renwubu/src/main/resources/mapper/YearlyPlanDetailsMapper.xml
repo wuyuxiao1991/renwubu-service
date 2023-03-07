@@ -71,4 +71,23 @@
         </where>
         group by team_branch;
     </select>
+
+    <select id="findYearMonthAndTeamBranch" resultType="com.persistence.entity.YearlyPlanDetails">
+        select * from yearly_plan_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="year!=null and year!=''">
+                and year like  "%"#{year}"%"
+            </if>
+            <if test="month!=null and month!=''">
+                and month  like  "%"#{month}"%"
+            </if>
+            <if test="teamBranch!=null and teamBranch!=''">
+                and team_branch like  "%"#{teamBranch}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
 </mapper>

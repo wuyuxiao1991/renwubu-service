@@ -256,21 +256,9 @@
 //
 //        //tabesNames的数据是通过准备工作的第4步得来的
 //        String tableNames[] = {
-//                "arms_equipment_registration",
-//                "base_armed_institution_registration",
-//                "emergency_equipment_registration",
-//                "military_and_civilian_equipment_registration",
-//                "military_service_registration",
-//                "military_strength_guarantee",
-//                "military_strength_plan",
-//                "military_strength_registration",
-//                "minbing_leader_registration",
-//                "people_detail",
-//                "pre_built_party_organization",
-//                "team_detail",
-//                "training_mission_details",
-//                "yearly_plan_details",
-//                "zhuanwu_leader_registration"
+//                "people_potential_registration",
+//                "equipment_potential_registration",
+//                "company_potential_registration"
 //        };
 //
 //        for (String t : tableNames) {

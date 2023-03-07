@@ -40,5 +40,11 @@ public interface MinbingLeaderRegistrationMapper extends BaseMapper<MinbingLeade
 
     List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
 
-
+    List<MinbingLeaderRegistration> findWorkAndPositionAndNameAndPoliticalStatus(@Param("work")String work,
+                                                                                 @Param("position")String position,
+                                                                                 @Param("name") String name,
+                                                                                 @Param("politicalStatus")String politicalStatus,
+                                                                                 @Param("phone")String phone,
+                                                                                 @Param("teamNameAndPosition")String teamNameAndPosition,
+                                                                                 @Param("identity")String identity);
 }

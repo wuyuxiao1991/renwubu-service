@@ -34,4 +34,6 @@ public interface PeopleDetailMapper extends BaseMapper<PeopleDetail> {
 
     List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
 
+    List<PeopleDetail> findByIdCardAndIdentity(@Param("idCard") String idNumber, @Param("identity") String identity);
+
 }

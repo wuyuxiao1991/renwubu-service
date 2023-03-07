@@ -30,5 +30,8 @@ public interface MilitaryCivilizationEquipmentMapper extends BaseMapper<Military
 
 
     List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
+    List<MilitaryAndCivilianEquipmentRegistration>findMilitaryEquipmentNameAndType(@Param("equipmentName")String equipmentName,
+                                                                                  @Param("type")String type,
+                                                                                  @Param("identity")String identity);
 
 }

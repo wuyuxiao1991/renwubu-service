@@ -1,10 +1,7 @@
 package com.service;
 
 
-import com.model.request.AddTeamDetailRequest;
-import com.model.request.DeleteTeamDetailRequest;
-import com.model.request.PageQueryPeopleDetailRequest;
-import com.model.request.PageQueryTeamDetailRequest;
+import com.model.request.*;
 import com.persistence.entity.PeopleDetail;
 import com.persistence.entity.TeamDetail;
 import com.persistence.mapper.PeopleDetailMapper;
@@ -13,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -60,4 +59,16 @@ public class OrganizationBuildService {
     public void deleteTeamDetail(DeleteTeamDetailRequest request) {
         teamDetailMapper.updateDeleteStatus(request.getId());
     }
+
+    /**/
+    public List<PeopleDetail> getPeopleDetail(String idNumber,String identity){
+        return peopleDetailMapper.findByIdCardAndIdentity(idNumber, identity);
+    }
+
+    public void addPeopleDetail(AddPeopleDetailRequest request){
+        PeopleDetail peopleDetail=new PeopleDetail();
+        BeanUtils.copyProperties(request,peopleDetail);
+        peopleDetailMapper.insert(peopleDetail);
+    }
+
 }

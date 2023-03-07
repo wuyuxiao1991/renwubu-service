@@ -9,6 +9,7 @@ import com.persistence.entity.PreBuildPartyOrganization;
 import com.persistence.entity.ZhuanwuLeaderRegistration;
 import com.service.PoliticalWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,6 +113,101 @@ public class PoliticalWorkController {
 
             return BaseResponse.ok(new BasePageQueryResponse<>(list, count));
         } catch (Exception e) {
+            return BaseResponse.failed(e.getLocalizedMessage());
+        }
+    }
+
+
+    /**
+     * 新增一条预建党组织编建表方法
+     * @param request
+     * @return
+     */
+    @PostMapping("/add_pre_build_party_organization")
+    public BaseResponse<Boolean> addPreBuildPartyOrganization(@RequestBody AddPreBuildPartyOrganizationRequest request){
+        try {
+            //校验参数
+            if(ObjectUtils.isEmpty(request.getPartyOrganizationName())){
+                return BaseResponse.failed("参数校验不通过！");
+            }
+            List<PreBuildPartyOrganization> preBuildPartyOrganizations = politicalWorkService.getPreBuildPartyOrganization(request.getPartyOrganizationName(),request.getIdentity());
+            if (!preBuildPartyOrganizations.isEmpty()) {
+                return BaseResponse.failed("不能添加重复数据！");
+            }
+            // 如果发现没有此数据则插入一条
+            politicalWorkService.addPreBuildPartyOrganization(request);
+            return BaseResponse.ok();
+        }catch (Exception e){
+            return BaseResponse.failed(e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * 新增一条基层武装机构登记表的方法
+     * @param request
+     * @return
+     */
+    @PostMapping("/add_base_armed_institution_registration")
+    public BaseResponse<Boolean> addBaseArmedInstitutionRegistration(@RequestBody AddBaseArmedInstitutionRegistrationRequest request){
+        try {
+            //校验参数
+            if(ObjectUtils.isEmpty(request.getName())||ObjectUtils.isEmpty(request.getType())){
+                return BaseResponse.failed("参数校验不通过！");
+            }
+            // 判重
+            List<BaseArmedInstitutionRegistration> baseArmedInstitutionRegistrations = politicalWorkService.getBaseArmedInstitutionRegistration(request.getName(), request.getType(),  request.getIdentity());
+            if (!baseArmedInstitutionRegistrations.isEmpty()) {
+                return BaseResponse.failed("不能添加重复数据！");
+            }
+            // 增加数据
+            politicalWorkService.addBaseArmedInstitutionRegistration(request);
+            return BaseResponse.ok();
+        }catch (Exception e){
+            return BaseResponse.failed(e.getLocalizedMessage());
+
+        }
+    }
+
+    /**
+     * 新增一条专武干部登记表
+     * @param request
+     * @return
+     */
+    @PostMapping("/add_zhuanwu_leader_registration")
+    public BaseResponse<Boolean> addZhuanwuLeaderRegistration(@RequestBody AddZhuanwuLeaderRegistrationRequest request){
+        try {
+            //校验参数
+            if(ObjectUtils.isEmpty(request.getIdNumber())){
+                return BaseResponse.failed("参数校验不通过！");
+            }
+            // 判重
+            List<ZhuanwuLeaderRegistration> zhuanwuLeaderRegistrations = politicalWorkService.getZhuanwuLeaderRegistration(request.getIdNumber(),  request.getIdentity());
+            if (!zhuanwuLeaderRegistrations.isEmpty()) {
+                return BaseResponse.failed("不能添加重复数据！");
+            }
+            // 增加数据
+            politicalWorkService.addZhuanwuLeaderRegistration(request);
+            return BaseResponse.ok();
+        }catch (Exception e){
+            return BaseResponse.failed(e.getLocalizedMessage());
+        }
+    }
+    @PostMapping("/add_minbing_leader_registration")
+    public BaseResponse<Boolean> addMingbingLeaderRegistration(@RequestBody AddMinbingLeaderRegistrationRequest request){
+        try{
+            //校验参数
+            if(ObjectUtils.isEmpty(request.getName())){
+                return BaseResponse.failed("参数校验不通过！");
+            }
+
+            List<MinbingLeaderRegistration> minbingLeaderRegistrations=politicalWorkService.getMinbingLeaderRegistration(request.getWork(), request.getPosition(), request.getName(), request.getPoliticalStatus(), request.getPhone(), request.getTeamNameAndPosition(), request.getIdentity());
+            if (!minbingLeaderRegistrations.isEmpty()) {
+                return BaseResponse.failed("不能添加重复数据！");
+            }
+            // 增加一条
+            politicalWorkService.addMinbingLeaderRegistration(request);
+            return BaseResponse.ok();
+        }catch (Exception e){
             return BaseResponse.failed(e.getLocalizedMessage());
         }
     }

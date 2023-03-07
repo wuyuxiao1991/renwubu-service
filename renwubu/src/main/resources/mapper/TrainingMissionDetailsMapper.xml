@@ -95,4 +95,20 @@
         group by concentrated_training_place;
     </select>
 
+    <select id="findByTeamTypeAndTeamBranchNameAndIdentity" resultType="com.persistence.entity.TrainingMissionDetails">
+        select * from training_mission_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="teamType!=null and teamType!=''">
+                and  team_type like "%"#{teamType}"%"
+            </if>
+            <if test="teamBranchName!=null and teamBranchName!=''">
+                and team_branch_name like "%"#{teamBranchName}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 </mapper>

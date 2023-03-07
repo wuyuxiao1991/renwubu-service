@@ -14,7 +14,7 @@ import java.util.List;
  * @author wuyuxiao
  */
 @Mapper
-public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<ArmsEquipmentRegistration> {
+public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<EmergencyEquipmentRegistration> {
 
 
     List<EmergencyEquipmentRegistration> pageQuery(@Param("searchKey") String searchKey,
@@ -29,5 +29,9 @@ public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<ArmsEqu
     int updateDeleteStatus(String id);
 
     List<HashMap<String,String>> groupBy(@Param("groupByField") String groupByField, @Param("identity") String identity);
+
+    List<EmergencyEquipmentRegistration> findEquipmentNameAndType(@Param("equipmentName")String equipmentName,
+                                                                  @Param("type")String type,
+                                                                  @Param("identity")String identity);
 
 }

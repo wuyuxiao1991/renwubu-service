@@ -28,4 +28,6 @@ public interface MilitaryServiceRegistrationMapper extends BaseMapper<MilitarySe
 
     int updateDeleteStatus(String id);
 
+    List<MilitaryServiceRegistration> findIdNumber(@Param("idNumber")String idNumber,
+                                                   @Param("identity")String identity);
 }

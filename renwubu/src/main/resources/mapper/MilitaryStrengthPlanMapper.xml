@@ -60,5 +60,20 @@
         update military_strength_plan set deleted = 1 where id = #{id}
     </update>
 
-
+    <select id="findPlanNameAndType" resultType="com.persistence.entity.MilitaryStrengthPlan">
+        select * from military_strength_plan
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="planName!=null and planName!=''">
+                and plan_name like  "%"#{planName}"%"
+            </if>
+            <if test="type!=null and type=''">
+                and type like "%"#{type}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 </mapper>

@@ -82,5 +82,23 @@
         update military_strength_registration set deleted = 1 where id = #{id}
     </update>
 
-
+    <select id="findRequiredByAndTaskTypeAndConcreteTask" resultType="com.persistence.entity.MilitaryStrengthRegistration">
+        select * from military_strength_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="requiredBy!=null and requiredBy!=''">
+                and required_by like  "%"#{requiredBy}"%"
+            </if>
+            <if test="taskType!=null and taskType!=''">
+                and task_type like  "%"#{taskType}"%"
+            </if>
+            <if test="concreteTask!=null and concreteTask!=''">
+                and concrete_task like  "%"#{concreteTask}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like  "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
 </mapper>

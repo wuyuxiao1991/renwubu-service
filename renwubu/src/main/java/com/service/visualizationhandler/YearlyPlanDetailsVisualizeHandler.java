@@ -38,7 +38,6 @@ public class YearlyPlanDetailsVisualizeHandler implements VisualizeHandler {
         String groupByField = typeToGroupByField.get(type);
         List<HashMap<String, String>> list = mapper.groupBy(identity);
         return list.stream().map(p -> new StatisticsDto(p.get(groupByField), new ValueDto(Integer.valueOf(String.valueOf(p.get("sum"))), null))).collect(Collectors.toList());
-
     }
 
 }
