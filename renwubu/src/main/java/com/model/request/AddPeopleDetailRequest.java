@@ -8,7 +8,7 @@ public class AddPeopleDetailRequest {
 	// 把字段设置为私有属性，可以避免外部直接访问字段，同时又能在方法中进行限制这些参数，防止用户输入的不规范
 	// 在setField方法中可进行修改参数，getField方法中获取field属性值
     private String name;
-    private String rank;
+    private String level;
     private String idNumber;
     private String sex;
     private String politicalStatus;
@@ -51,12 +51,12 @@ public class AddPeopleDetailRequest {
 		this.name = name;
 	}
 
-	public String getRank() {
-		return rank;
+	public String getLevel() {
+		return level;
 	}
 
-	public void setRank(String rank) {
-		this.rank = rank;
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	public String getIdNumber() {

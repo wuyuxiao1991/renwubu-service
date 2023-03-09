@@ -9,7 +9,7 @@ public class AddEmergencyEquipmentRegistrationRequest {
     private String type;
     private String unit;
     private String number;
-    private String use;
+    private String usage;
     private String warehousingTime;
     private String equipmentPerformance;
     private String storagePlace;
@@ -51,12 +51,12 @@ public class AddEmergencyEquipmentRegistrationRequest {
         this.number = number;
     }
 
-    public String getUse() {
-        return use;
+    public String getUsage() {
+        return usage;
     }
 
-    public void setUse(String use) {
-        this.use = use;
+    public void setUsage(String usage) {
+        this.usage = usage;
     }
 
     public String getWarehousingTime() {

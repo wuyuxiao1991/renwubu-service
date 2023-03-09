@@ -90,7 +90,7 @@ public class ArmsEquipmentRegistrationHandler implements ExcelHandler {
         armsEquipmentRegistration.unit = commonService.getCellValueByCell(row.getCell(2));
         armsEquipmentRegistration.number = commonService.getCellValueByCell(row.getCell(3));
         armsEquipmentRegistration.qualityLevel = commonService.getCellValueByCell(row.getCell(4));
-        armsEquipmentRegistration.purpose = commonService.getCellValueByCell(row.getCell(5));
+        armsEquipmentRegistration.usage = commonService.getCellValueByCell(row.getCell(5));
         armsEquipmentRegistration.warehousingTime = commonService.getCellValueByCell(row.getCell(6));
         armsEquipmentRegistration.equipmentPerformance = commonService.getCellValueByCell(row.getCell(7));
         armsEquipmentRegistration.storagePlace = commonService.getCellValueByCell(row.getCell(8));
@@ -119,7 +119,7 @@ public class ArmsEquipmentRegistrationHandler implements ExcelHandler {
         row.createCell(2).setCellValue(armsEquipmentRegistration.unit);
         row.createCell(3).setCellValue(armsEquipmentRegistration.number);
         row.createCell(4).setCellValue(armsEquipmentRegistration.qualityLevel);
-        row.createCell(5).setCellValue(armsEquipmentRegistration.purpose);
+        row.createCell(5).setCellValue(armsEquipmentRegistration.usage);
         row.createCell(6).setCellValue(armsEquipmentRegistration.warehousingTime);
         row.createCell(7).setCellValue(armsEquipmentRegistration.equipmentPerformance);
         row.createCell(8).setCellValue(armsEquipmentRegistration.storagePlace);

@@ -8,7 +8,7 @@ public class AddMilitaryAndCivilianEquipmentRegistrationRequest {
     private String type;
     private String unit;
     private String number;
-    private String use;
+    private String usage;
     private String warehousingTime;
     private String equipmentPerformance;
     private String storagePlace;
@@ -50,12 +50,12 @@ public class AddMilitaryAndCivilianEquipmentRegistrationRequest {
         this.number = number;
     }
 
-    public String getUse() {
-        return use;
+    public void setUsage(String usage) {
+        this.usage = usage;
     }
 
-    public void setUse(String use) {
-        this.use = use;
+    public String getUsage() {
+        return usage;
     }
 
     public String getWarehousingTime() {
