@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.ThirdMenuMapper">
+
+    <select id="findBySecondMenuGuid" resultType="com.persistence.entity.ThirdMenu">
+        select *
+        from third_menu
+        where second_menu_guid=#{secondMenuGuid} order by create_time
+    </select>
+
+    <select id="findByGuid" resultType="com.persistence.entity.ThirdMenu">
+        select *
+        from third_menu
+        where third_menu_guid=#{thirdMenuGuid} order by create_time
+    </select>
+
+</mapper>

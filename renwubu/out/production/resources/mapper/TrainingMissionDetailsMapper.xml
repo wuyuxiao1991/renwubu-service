@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.TrainingMissionDetailMapper">
+
+
+    <select id="pageQuery" resultType="com.persistence.entity.TrainingMissionDetails">
+        select * from training_mission_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                province like "%"#{searchKey}"%"
+                or city like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                or team_branch_name like "%"#{searchKey}"%"
+                or affiliation like "%"#{searchKey}"%"
+                or team_type like "%"#{searchKey}"%"
+                or concentrated_training_place like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="province!=null and province!=''">
+                and province like  "%"#{province}"%"
+            </if>
+            <if test="city!=null and city!=''">
+                and city  like  "%"#{city}"%"
+            </if>
+            <if test="district!=null and district!=''">
+                and district  like  "%"#{district}"%"
+            </if>
+            <if test="year!=null and year!=''">
+                and year like  "%"#{year}"%"
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount"  resultType="java.lang.Integer">
+        select count(*) from training_mission_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                province like "%"#{searchKey}"%"
+                or city like "%"#{searchKey}"%"
+                or district like "%"#{searchKey}"%"
+                or team_branch_name like "%"#{searchKey}"%"
+                or affiliation like "%"#{searchKey}"%"
+                or team_type like "%"#{searchKey}"%"
+                or concentrated_training_place like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="province!=null and province!=''">
+                and province like  "%"#{province}"%"
+            </if>
+            <if test="city!=null and city!=''">
+                and city  like  "%"#{city}"%"
+            </if>
+            <if test="district!=null and district!=''">
+                and district  like  "%"#{district}"%"
+            </if>
+            <if test="year!=null and year!=''">
+                and year like  "%"#{year}"%"
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeleteStatus">
+        update team_detail set deleted = 1 where id = #{id}
+    </update>
+
+
+</mapper>

@@ -13,13 +13,13 @@ import java.util.List;
  * @author wuyuxiao
  */
 @Mapper
-public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<ArmsEquipmentRegistration> {
+public interface EmergencyEquipmentRegistrationMapper extends BaseMapper<EmergencyEquipmentRegistration> {
 
 
     List<EmergencyEquipmentRegistration> pageQuery(@Param("searchKey") String searchKey,
-                                                   @Param("equipmentPerformance") String equipmentPerformance,
-                                                   @Param("identity") String identity,
-                                                   @Param("offset") int offset, @Param("pageSize") int pageSize);
+                                                          @Param("equipmentPerformance") String equipmentPerformance,
+                                                          @Param("identity") String identity,
+                                                          @Param("offset") int offset, @Param("pageSize") int pageSize);
 
     int queryTotalCount(@Param("searchKey") String searchKey,
                         @Param("equipmentPerformance") String equipmentPerformance,
