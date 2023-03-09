@@ -134,7 +134,7 @@ public class PeopleDetailHandler implements ExcelHandler {
         int index = 5 + i;
         Row row = sheet.createRow(index);
         row.createCell(1).setCellValue(peopleDetail.name);
-        row.createCell(2).setCellValue(peopleDetail.rank);
+        row.createCell(2).setCellValue(peopleDetail.level);
         row.createCell(3).setCellValue(peopleDetail.idNumber);
         row.createCell(4).setCellValue(peopleDetail.sex);
         row.createCell(5).setCellValue(peopleDetail.politicalStatus);

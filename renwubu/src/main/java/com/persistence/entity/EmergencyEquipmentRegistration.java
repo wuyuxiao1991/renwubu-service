@@ -1,14 +1,11 @@
 package com.persistence.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.sql.*;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -38,8 +35,8 @@ public class EmergencyEquipmentRegistration {
 	@TableField(value = "number")
 	public String number; 
 
-	@TableField(value = "use")
-	public String use; 
+	@TableField(value = "usage")
+	public String usage;
 
 	@TableField(value = "warehousing_time")
 	public String warehousingTime; 

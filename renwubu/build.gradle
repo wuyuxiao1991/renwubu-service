@@ -54,6 +54,7 @@ dependencies {
     compileOnly 'javax.servlet:jstl:1.2'
     compileOnly 'javax.el:javax.el-api:3.0.0'
     compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.63'
 
     //excel文件处理jar包

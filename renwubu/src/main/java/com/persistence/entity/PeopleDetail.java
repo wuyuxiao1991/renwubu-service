@@ -1,14 +1,11 @@
 package com.persistence.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.sql.*;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
  * people_detail 实体类
@@ -27,8 +24,8 @@ public class PeopleDetail {
 	@TableField(value = "name")
 	public String name; 
 
-	@TableField(value = "rank")
-	public String rank; 
+	@TableField(value = "level")
+	public String level;
 
 	@TableField(value = "id_number")
 	public String idNumber; 
@@ -55,7 +52,7 @@ public class PeopleDetail {
 	public String workType; 
 
 	@TableField(value = "position")
-	public String position; 
+	public String position;
 
 	@TableField(value = "is_government_worker")
 	public String isGovernmentWorker; 
