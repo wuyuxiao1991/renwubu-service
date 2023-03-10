@@ -13,7 +13,7 @@ import java.util.List;
  * @author wuyuxiao
  */
 @Mapper
-public interface TrainingMissionDetailMapper extends BaseMapper<TrainingMissionDetails> {
+public interface TrainingMissionDetailsMapper extends BaseMapper<TrainingMissionDetails> {
 
 
     List<TrainingMissionDetails> pageQuery(@Param("searchKey") String searchKey,

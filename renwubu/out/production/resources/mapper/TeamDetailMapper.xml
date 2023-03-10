@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.TeamDetailMapper">
+
+
+    <select id="pageQuery" resultType="com.persistence.entity.TeamDetail">
+        select * from team_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or task like "%"#{searchKey}"%"
+                or professional_type like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity = #{identity}
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+        select count(*) from team_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or task like "%"#{searchKey}"%"
+                or professional_type like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+
+    <select id="findByNameAndIdentity" resultType="com.persistence.entity.TeamDetail">
+        select * from team_detail
+        <where>
+            <!-- test：判断表达式（OGNL）
+            遇见特殊符号应该去写转义字符：&&、''等字符
+            -->
+            <if test="name!=null and name!=''">
+                name=#{name}
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
+
+
+    <update id="updateDeleteStatus">
+        update team_detail set deleted = 1 where id = #{id}
+    </update>
+
+
+    <select id="groupBy" resultType="java.util.HashMap">
+        select ${groupByField} , count(*) as count from team_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by ${groupByField};
+    </select>
+
+
+    <select id="groupByTeam" resultType="java.util.HashMap">
+        select name , sum(cast(number_of_people as SIGNED)) as sum from team_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by name;
+    </select>
+
+</mapper>

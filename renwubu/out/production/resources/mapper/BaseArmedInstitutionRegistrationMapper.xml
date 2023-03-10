@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.BaseArmedInstitutionRegistrationMapper">
+
+    <select id="pageQuery" resultType="com.persistence.entity.BaseArmedInstitutionRegistration">
+        select * from base_armed_institution_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or place like "%"#{searchKey}"%"
+                or approval_by like "%"#{searchKey}"%"
+                or level like "%"#{searchKey}"%"
+                or management_relation like "%"#{searchKey}"%"
+                or region_distribution like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="type!=null and type!=''">
+                and type = "%"#{type}"%"
+            </if>
+            <if test="place!=null and place!=''">
+                and place like "%"#{place}"%"
+            </if>
+            <if test="approvalBy!=null and approvalBy!=''">
+                and approval_by like "%"#{approvalBy}"%"
+            </if>
+            <if test="level!=null and level!=''">
+                and level like "%"#{level}"%"
+            </if>
+            <if test="managementRelation!=null and managementRelation!=''">
+                and management_relation like "%"#{managementRelation}"%"
+            </if>
+            <if test="regionDistribution!=null and regionDistribution!=''">
+                and region_distribution like "%"#{regionDistribution}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount"  resultType="java.lang.Integer">
+        select count(*) from base_armed_institution_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or type like "%"#{searchKey}"%"
+                or place like "%"#{searchKey}"%"
+                or approval_by like "%"#{searchKey}"%"
+                or level like "%"#{searchKey}"%"
+                or management_relation like "%"#{searchKey}"%"
+                or region_distribution like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="type!=null and type!=''">
+                and type = "%"#{type}"%"
+            </if>
+            <if test="place!=null and place!=''">
+                and place like "%"#{place}"%"
+            </if>
+            <if test="approvalBy!=null and approvalBy!=''">
+                and approval_by like "%"#{approvalBy}"%"
+            </if>
+            <if test="level!=null and level!=''">
+                and level like "%"#{level}"%"
+            </if>
+            <if test="managementRelation!=null and managementRelation!=''">
+                and management_relation like "%"#{managementRelation}"%"
+            </if>
+            <if test="regionDistribution!=null and regionDistribution!=''">
+                and region_distribution like "%"#{regionDistribution}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeleteStatus">
+        update base_armed_institution_registration set deleted = 1 where id = #{id}
+    </update>
+
+    <select id="findNameAndTypeAndPlaceAndIdentity" resultType="com.persistence.entity.BaseArmedInstitutionRegistration">
+        select * from base_armed_institution_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="type!=null and type!=''">
+                and type like "%"#{type}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.PeopleDetailMapper">
+
+
+    <select id="pageQuery" resultType="com.persistence.entity.PeopleDetail">
+        select * from people_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                rank like "%"#{searchKey}"%"
+                or sex like "%"#{searchKey}"%"
+                or political_status like "%"#{searchKey}"%"
+                or education_level like "%"#{searchKey}"%"
+                or nationality like "%"#{searchKey}"%"
+                or health like "%"#{searchKey}"%"
+                or work like "%"#{searchKey}"%"
+                or work_type like "%"#{searchKey}"%"
+                or position like "%"#{searchKey}"%"
+                or work_place like "%"#{searchKey}"%"
+                or household_place like "%"#{searchKey}"%"
+                or military_service_status like "%"#{searchKey}"%"
+                or type_of_military like "%"#{searchKey}"%"
+                or military_major_name like "%"#{searchKey}"%"
+                or military_rank_when_retire like "%"#{searchKey}"%"
+                or local_profession_type_1 like "%"#{searchKey}"%"
+                or local_profession_name_1 like "%"#{searchKey}"%"
+                or technical_title_1 like "%"#{searchKey}"%"
+                or local_profession_type_2 like "%"#{searchKey}"%"
+                or local_profession_name_2 like "%"#{searchKey}"%"
+                or technical_title_2 like "%"#{searchKey}"%"
+                or direction like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="idCard!=null and idCard!=''">
+                and idCard like "%"#{idCard}"%"
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone like "%"#{phone}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount"  resultType="java.lang.Integer">
+        select count(*) from people_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                rank like "%"#{searchKey}"%"
+                or sex like "%"#{searchKey}"%"
+                or political_status like "%"#{searchKey}"%"
+                or education_level like "%"#{searchKey}"%"
+                or nationality like "%"#{searchKey}"%"
+                or health like "%"#{searchKey}"%"
+                or work like "%"#{searchKey}"%"
+                or work_type like "%"#{searchKey}"%"
+                or position like "%"#{searchKey}"%"
+                or work_place like "%"#{searchKey}"%"
+                or household_place like "%"#{searchKey}"%"
+                or military_service_status like "%"#{searchKey}"%"
+                or type_of_military like "%"#{searchKey}"%"
+                or military_major_name like "%"#{searchKey}"%"
+                or military_rank_when_retire like "%"#{searchKey}"%"
+                or local_profession_type_1 like "%"#{searchKey}"%"
+                or local_profession_name_1 like "%"#{searchKey}"%"
+                or technical_title_1 like "%"#{searchKey}"%"
+                or local_profession_type_2 like "%"#{searchKey}"%"
+                or local_profession_name_2 like "%"#{searchKey}"%"
+                or technical_title_2 like "%"#{searchKey}"%"
+                or direction like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="idCard!=null and idCard!=''">
+                and idCard like "%"#{idCard}"%"
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone like "%"#{phone}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeleteStatus">
+        update people_detail set deleted = 1 where id = #{id}
+    </update>
+
+    <select id="groupBy" resultType="java.util.HashMap">
+        select ${groupByField} , count(*) as count from people_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by ${groupByField};
+    </select>
+    <select id="findByIdCardAndIdentity" resultType="com.persistence.entity.PeopleDetail">
+        select * from people_detail
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="idCard!=null and idCard!=''">
+                and  id_number like "%"#{idCard}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time
+    </select>
+</mapper>

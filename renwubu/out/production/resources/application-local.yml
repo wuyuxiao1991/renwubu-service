@@ -1,0 +1,12 @@
+debug: true
+
+
+server:
+  port: 8019
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   # 暴露actuator的所有endpoint
+

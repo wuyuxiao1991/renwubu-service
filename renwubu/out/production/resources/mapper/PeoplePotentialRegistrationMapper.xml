@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.persistence.mapper.PeoplePotentialMapper">
+
+    <select id="pageQuery" resultType="com.persistence.entity.PeoplePotentialRegistration">
+        select * from people_potential_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or sex like "%"#{searchKey}"%"
+                or political_status like "%"#{searchKey}"%"
+                or education_level like "%"#{searchKey}"%"
+                or nationality like "%"#{searchKey}"%"
+                or health like "%"#{searchKey}"%"
+                or work like "%"#{searchKey}"%"
+                or work_property like "%"#{searchKey}"%"
+                or position like "%"#{searchKey}"%"
+                or work_place like "%"#{searchKey}"%"
+                or household_place like "%"#{searchKey}"%"
+                or military_status like "%"#{searchKey}"%"
+                or military_major_name like "%"#{searchKey}"%"
+                or position_when_retire like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        order by create_time desc limit #{offset}, #{pageSize}
+    </select>
+
+
+    <select id="queryTotalCount"  resultType="java.lang.Integer">
+        select count(*) from people_potential_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="searchKey!=null and searchKey!=''">
+                and (
+                name like "%"#{searchKey}"%"
+                or sex like "%"#{searchKey}"%"
+                or political_status like "%"#{searchKey}"%"
+                or education_level like "%"#{searchKey}"%"
+                or nationality like "%"#{searchKey}"%"
+                or health like "%"#{searchKey}"%"
+                or work like "%"#{searchKey}"%"
+                or work_property like "%"#{searchKey}"%"
+                or position like "%"#{searchKey}"%"
+                or work_place like "%"#{searchKey}"%"
+                or household_place like "%"#{searchKey}"%"
+                or military_status like "%"#{searchKey}"%"
+                or military_major_name like "%"#{searchKey}"%"
+                or position_when_retire like "%"#{searchKey}"%"
+                )
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeleteStatus">
+        update people_potential_registration set deleted = 1 where id = #{id}
+    </update>
+
+
+</mapper>
