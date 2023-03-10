@@ -46,7 +46,7 @@ public class MilitaryAndCivilianEquipmentRegistrationHandler implements ExcelHan
 
     ;
 
-    public void upload(MultipartFile file) {
+    public void upload(MultipartFile file,String identity) {
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();

@@ -46,7 +46,7 @@ public class EmergencyEquipmentRegistrationHandler implements ExcelHandler{
     @Override
     public String getExcelType(){return "emergency_equipment_registration.xml";};
 
-    public void upload(MultipartFile file){
+    public void upload(MultipartFile file,String identity){
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();
