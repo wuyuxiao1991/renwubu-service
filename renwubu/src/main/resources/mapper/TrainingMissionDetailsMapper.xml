@@ -34,7 +34,7 @@
                 and year like  "%"#{year}"%"
             </if>
         </where>
-        order by create_time desc limit #{offset}, #{pageSize}
+        order by create_time limit #{offset}, #{pageSize}
     </select>
 
 

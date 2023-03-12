@@ -37,8 +37,8 @@ public class ArmsEquipmentRegistration {
 	@TableField(value = "quality_level")
 	public String qualityLevel; 
 
-	@TableField(value = "usage")
-	public String usage;
+	@TableField(value = "purpose")
+	public String purpose;
 
 	@TableField(value = "warehousing_time")
 	public String warehousingTime; 

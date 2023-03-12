@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 public class ZhuanwuLeaderRegistration {
 
 	@TableId(type = IdType.AUTO)
-	Long id;
+	public Long id;
 
 	@TableField(value = "work")
 	public String work; 

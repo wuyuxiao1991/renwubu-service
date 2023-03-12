@@ -1,6 +1,8 @@
 package com.service.excelhandler;
 
 
+import com.model.constants.enums.ExcelTypeEnum;
+import com.model.request.UploadExcelRequest;
 import com.persistence.entity.PeopleDetail;
 import com.persistence.mapper.PeopleDetailMapper;
 import com.service.CommonService;
@@ -44,17 +46,17 @@ public class PeopleDetailHandler implements ExcelHandler {
 
     @Override
     public String getExcelType() {
-        return "people_detail";
+        return ExcelTypeEnum.PEOPLE_DETAIL.name();
     }
 
     @Override
-    public void upload(MultipartFile file, String identity) {
+    public void upload(MultipartFile file, UploadExcelRequest request) {
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();
         for (int i = 5; i < rowNum; i++) {
             Row row = sheet.getRow(i);
-            insertPeopleDetail(row, identity);
+            insertPeopleDetail(row, request.getIdentity());
         }
     }
 

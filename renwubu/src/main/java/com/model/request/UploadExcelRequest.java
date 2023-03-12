@@ -8,6 +8,8 @@ package com.model.request;
 public class UploadExcelRequest {
     private String type;
 
+    private String year;
+
     private String identity;
 
     public String getType() {
@@ -16,6 +18,14 @@ public class UploadExcelRequest {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getYear() {
+        return year;
     }
 
     public String getIdentity() {

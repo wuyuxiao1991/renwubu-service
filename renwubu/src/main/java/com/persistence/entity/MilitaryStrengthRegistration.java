@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 public class MilitaryStrengthRegistration {
 
 	@TableId(type = IdType.AUTO)
-	Long id;
+	public Long id;
 
 	@TableField(value = "required_by")
 	public String requiredBy; 

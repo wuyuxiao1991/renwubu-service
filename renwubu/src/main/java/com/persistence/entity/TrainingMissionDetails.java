@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @TableName("training_mission_details")
 public class TrainingMissionDetails {
 	@TableId(type = IdType.AUTO)
-	Long id;
+	public Long id;
 
 	@TableField(value = "year")
 	public String year; 

@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 public class BaseArmedInstitutionRegistration {
 
 	@TableId(type = IdType.AUTO)
-	Long id;
+	public Long id;
 
 	@TableField(value = "name")
 	public String name; 

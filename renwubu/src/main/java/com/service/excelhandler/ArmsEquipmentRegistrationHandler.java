@@ -1,6 +1,8 @@
 package com.service.excelhandler;
 
 
+import com.model.constants.enums.ExcelTypeEnum;
+import com.model.request.UploadExcelRequest;
 import com.persistence.entity.ArmsEquipmentRegistration;
 import com.persistence.mapper.ArmsEquipmentRegistrationMapper;
 import com.service.CommonService;
@@ -44,17 +46,17 @@ public class ArmsEquipmentRegistrationHandler implements ExcelHandler {
 
     @Override
     public String getExcelType() {
-        return "arms_equipment_registration";
+        return ExcelTypeEnum.ARMS_EQUIPMENT_REGISTRATION.name();
     }
 
     @Override
-    public void upload(MultipartFile file, String identity) {
+    public void upload(MultipartFile file, UploadExcelRequest request) {
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();
         for (int i = 6; i < rowNum; i++) {
             Row row = sheet.getRow(i);
-            insertArmsEquipmentRegistration(row, identity);
+            insertArmsEquipmentRegistration(row, request.getIdentity());
         }
     }
 
@@ -90,7 +92,7 @@ public class ArmsEquipmentRegistrationHandler implements ExcelHandler {
         armsEquipmentRegistration.unit = commonService.getCellValueByCell(row.getCell(2));
         armsEquipmentRegistration.number = commonService.getCellValueByCell(row.getCell(3));
         armsEquipmentRegistration.qualityLevel = commonService.getCellValueByCell(row.getCell(4));
-        armsEquipmentRegistration.usage = commonService.getCellValueByCell(row.getCell(5));
+        armsEquipmentRegistration.purpose = commonService.getCellValueByCell(row.getCell(5));
         armsEquipmentRegistration.warehousingTime = commonService.getCellValueByCell(row.getCell(6));
         armsEquipmentRegistration.equipmentPerformance = commonService.getCellValueByCell(row.getCell(7));
         armsEquipmentRegistration.storagePlace = commonService.getCellValueByCell(row.getCell(8));
@@ -119,7 +121,7 @@ public class ArmsEquipmentRegistrationHandler implements ExcelHandler {
         row.createCell(2).setCellValue(armsEquipmentRegistration.unit);
         row.createCell(3).setCellValue(armsEquipmentRegistration.number);
         row.createCell(4).setCellValue(armsEquipmentRegistration.qualityLevel);
-        row.createCell(5).setCellValue(armsEquipmentRegistration.usage);
+        row.createCell(5).setCellValue(armsEquipmentRegistration.purpose);
         row.createCell(6).setCellValue(armsEquipmentRegistration.warehousingTime);
         row.createCell(7).setCellValue(armsEquipmentRegistration.equipmentPerformance);
         row.createCell(8).setCellValue(armsEquipmentRegistration.storagePlace);

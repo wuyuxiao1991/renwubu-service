@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @TableName("minbing_leader_registration")
 public class MinbingLeaderRegistration {
 	@TableId(type = IdType.AUTO)
-	Long id;
+	public Long id;
 
 	@TableField(value = "work")
 	public String work; 

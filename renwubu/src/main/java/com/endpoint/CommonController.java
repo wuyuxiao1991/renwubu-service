@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -65,7 +64,7 @@ public class CommonController {
         for (ExcelHandler excelHandler : excelHandlerList
         ) {
             if (excelHandler.getExcelType().equals(request.getType())) {
-                excelHandler.upload(file, request.getIdentity());
+                excelHandler.upload(file, request);
             }
         }
         return BaseResponse.ok(true);
@@ -78,15 +77,19 @@ public class CommonController {
      * @return
      */
     @PostMapping("/download_excel")
-    public BaseResponse<String> downloadExcel(@RequestBody DownloadExcelRequest request) throws IOException {
-        String result = null;
-        for (ExcelHandler excelHandler : excelHandlerList
-        ) {
-            if (excelHandler.getExcelType().equals(request.getType())) {
-                result = excelHandler.download(request.getIdentity());
+    public BaseResponse<String> downloadExcel(@RequestBody DownloadExcelRequest request) {
+        try {
+            String result = null;
+            for (ExcelHandler excelHandler : excelHandlerList
+            ) {
+                if (excelHandler.getExcelType().equals(request.getType())) {
+                    result = excelHandler.download(request.getIdentity());
+                }
             }
+            return BaseResponse.ok(result);
+        } catch (Exception ex) {
+            return BaseResponse.failed(ex.getMessage());
         }
-        return BaseResponse.ok(result);
     }
 
 
@@ -102,12 +105,12 @@ public class CommonController {
             for (VisualizeHandler visualizeHandler : visualizeHandlerList
             ) {
                 if (visualizeHandler.isSupport(request.getType())) {
-                    result = visualizeHandler.calculate(request.type,request.getIdentity());
+                    result = visualizeHandler.calculate(request.type, request.getIdentity());
                 }
             }
             return BaseResponse.ok(result);
         } catch (Exception ex) {
-         return BaseResponse.failed("exception:"+ex.getMessage());
+            return BaseResponse.failed("exception:" + ex.getMessage());
         }
     }
 }

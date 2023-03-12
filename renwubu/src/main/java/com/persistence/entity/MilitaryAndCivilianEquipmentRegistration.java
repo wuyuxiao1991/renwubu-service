@@ -33,8 +33,8 @@ public class MilitaryAndCivilianEquipmentRegistration {
 	@TableField(value = "number")
 	public String number; 
 
-	@TableField(value = "usage" )
-	public String usage;
+	@TableField(value = "purpose" )
+	public String purpose;
 
 	@TableField(value = "warehousing_time")
 	public String warehousingTime; 
