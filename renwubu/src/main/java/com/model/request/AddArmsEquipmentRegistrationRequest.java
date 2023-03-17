@@ -13,7 +13,7 @@ public class AddArmsEquipmentRegistrationRequest {
     private String unit;
     private String number;
     private String qualityLevel;
-    private String usage;
+    private String purpose;
     private String warehousingTime;
     private String equipmentPerformance;
     private String storagePlace;

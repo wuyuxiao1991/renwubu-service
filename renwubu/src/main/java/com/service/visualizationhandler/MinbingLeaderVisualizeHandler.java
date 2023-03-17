@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.model.constants.enums.StatisticsTypeEnum.EDUCATION_LEVEL_OF_MINBING_LEADER;
+import static com.model.constants.enums.StatisticsTypeEnum.*;
 
 /**
  * @author wuyuxiao
@@ -21,10 +21,14 @@ import static com.model.constants.enums.StatisticsTypeEnum.EDUCATION_LEVEL_OF_MI
 public class MinbingLeaderVisualizeHandler implements VisualizeHandler {
     @Autowired
     private MinbingLeaderRegistrationMapper mapper;
-    private final List<String> SUPPORT_VISUALIZATION_TYPES = Arrays.asList(EDUCATION_LEVEL_OF_MINBING_LEADER.name());
+    private final List<String> SUPPORT_VISUALIZATION_TYPES = Arrays.asList(EDUCATION_LEVEL_OF_MINBING_LEADER.name(),
+            POSITION_OF_MINBING_LEADER.name(), MILITARY_STATUS_OF_MINBING_LEADER.name(), SEX_OF_MINBING_LEADER.name());
     private final Map<String, String> typeToGroupByField = new HashMap<String, String>() {
         {
             put(EDUCATION_LEVEL_OF_MINBING_LEADER.name(), "education_level");
+            put(POSITION_OF_MINBING_LEADER.name(), "position");
+            put(MILITARY_STATUS_OF_MINBING_LEADER.name(), "is_retire_military");
+            put(SEX_OF_MINBING_LEADER.name(), "sex");
         }
     };
 

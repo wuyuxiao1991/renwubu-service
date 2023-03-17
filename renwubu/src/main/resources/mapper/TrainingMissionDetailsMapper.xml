@@ -95,6 +95,20 @@
         group by concentrated_training_place;
     </select>
 
+
+    <select id="groupByTeam" resultType="java.util.HashMap">
+        select team_branch_name, sum(cast(training_headcount as SIGNED) * cast(total_count AS signed)) as sum
+        from training_mission_details
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by team_branch_name;
+    </select>
+
+
     <select id="findByTeamTypeAndTeamBranchNameAndIdentity" resultType="com.persistence.entity.TrainingMissionDetails">
         select * from training_mission_details
         <where>

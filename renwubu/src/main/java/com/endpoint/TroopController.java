@@ -106,7 +106,7 @@ public class TroopController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getPlanName())||ObjectUtils.isEmpty(request.getType())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("计划名和类型不可为空！");
             }
             List<MilitaryStrengthPlan>militaryStrengthPlans =service.getMilitaryStrengthPlan(request.getPlanName(), request.getType(), request.getIdentity());
             if (!militaryStrengthPlans.isEmpty()) {
@@ -129,7 +129,7 @@ public class TroopController {
         try{
             //校验参数
             if(ObjectUtils.isEmpty(request.getRequiredBy())||ObjectUtils.isEmpty(request.getTaskType())||ObjectUtils.isEmpty(request.getConcreteTask())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("需求方、任务类型和具体任务不可为空！");
             }
             List<MilitaryStrengthRegistration>militaryStrengthRegistrations =service.getMilitaryStrengthRegistration(request.getRequiredBy(), request.getTaskType(), request.getConcreteTask(), request.getIdentity());
             if (!militaryStrengthRegistrations.isEmpty()) {
@@ -146,7 +146,7 @@ public class TroopController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getRegistrationPerson())||ObjectUtils.isEmpty(request.getRegistrationTask().isEmpty())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("登记人和登记任务不可为空！");
             }
             // 判重
             List<MilitaryStrengthGuarantee> militaryStrengthGuarantees=service.getMilitaryStrengthGuarantee(request.getRegistrationTask(), request.getRegistrationPerson(), request.getIdentity());

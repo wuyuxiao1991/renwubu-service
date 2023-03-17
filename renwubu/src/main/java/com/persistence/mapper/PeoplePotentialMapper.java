@@ -2,11 +2,9 @@ package com.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.persistence.entity.PeoplePotentialRegistration;
-import com.persistence.entity.TeamDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -23,4 +21,8 @@ public interface PeoplePotentialMapper extends BaseMapper<PeoplePotentialRegistr
 
     int queryTotalCount(@Param("searchKey") String searchKey,
                         @Param("identity") String identity);
+
+    List<PeoplePotentialRegistration> findByNameAndIdNumber(@Param("name") String name,
+                                                            @Param("idNumber") String idNumber,
+                                                            @Param("identity") String identity);
 }

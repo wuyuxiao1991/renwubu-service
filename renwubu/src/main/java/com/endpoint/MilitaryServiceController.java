@@ -57,8 +57,8 @@ public class MilitaryServiceController {
     public BaseResponse<Boolean> addMilitaryServiceRegistration(@RequestBody AddMilitaryServiceRegistrationRequest request){
         try {
             //校验参数
-            if(ObjectUtils.isEmpty(request.getIdentity())){
-                return BaseResponse.failed("参数校验不通过！");
+            if(ObjectUtils.isEmpty(request.getIdNumber())){
+                return BaseResponse.failed("身份证号不可为空！");
             }
 
             List<MilitaryServiceRegistration> militaryServiceRegistrations = service.getMilitaryServiceRegistration(request.getIdNumber(), request.getIdentity());

@@ -69,27 +69,27 @@ public class NewsController {
     }
 
     @PostMapping("/add_or_update_news")
-    public BaseResponse<NewsDetail> addOrUpdateNews(@RequestPart(value = "images", required = false) MultipartFile[] files, @RequestPart("content") AddOrUpdateRequest request) {
+    public BaseResponse<NewsDetail> addOrUpdateNews(@RequestPart(value = "files", required = false) MultipartFile[] files, @RequestPart("content") AddOrUpdateRequest request) {
         try {
-//            1.上传图片到tomcat路径下
-            List<String> imageUrls = new ArrayList<>();
+//            1.上传文件到tomcat路径下
+            List<String> filePathList = new ArrayList<>();
             if (files != null) {
                 long count = Arrays.stream(files)
                         .map(MultipartFile::getOriginalFilename).filter(Objects::nonNull).count();
                 if (count > 0) {
-                    for (MultipartFile picture : files) {
-                        String originalFilename = picture.getOriginalFilename();
+                    for (MultipartFile file : files) {
+                        String originalFilename = file.getOriginalFilename();
                         //todo 这里可以改变文件名
                         //......
                         //写文件
                         String pathName = url + originalFilename;
-                        picture.transferTo(new File(pathName));
-                        imageUrls.add(pathName);
+                        file.transferTo(new File(pathName));
+                        filePathList.add(pathName);
                     }
                 }
             }
             //2.保存news
-            NewsDetail newsDetail = newsService.addOrUpdateNews(request, imageUrls);
+            NewsDetail newsDetail = newsService.addOrUpdateNews(request, filePathList);
 
             return BaseResponse.ok(newsDetail);
         } catch (Exception e) {

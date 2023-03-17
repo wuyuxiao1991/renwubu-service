@@ -68,4 +68,16 @@
     </select>
 
 
+    <select id="groupBy" resultType="java.util.HashMap">
+        select substring(party_organization_name, char_length(party_organization_name)-3, 4) as truncated_name,
+        count(1) as count from pre_build_party_organization
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+        group by truncated_name;
+    </select>
+
 </mapper>

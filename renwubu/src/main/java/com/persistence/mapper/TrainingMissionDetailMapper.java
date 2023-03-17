@@ -35,7 +35,9 @@ public interface TrainingMissionDetailMapper extends BaseMapper<TrainingMissionD
 
     List<HashMap<String, String>> groupByPlace(@Param("identity") String identity);
 
-    List<HashMap<String, String>> groupByTotalDayCount(@Param("identity") String identity);
+//    List<HashMap<String, String>> groupByTotalDayCount(@Param("identity") String identity);
+
+    List<HashMap<String, String>> groupByTeam(@Param("identity") String identity);
 
     List<TrainingMissionDetails> findByTeamTypeAndTeamBranchNameAndIdentity(@Param("teamType") String teamType,@Param("teamBranchName") String teamBranchName,@Param("identity") String identity);
 

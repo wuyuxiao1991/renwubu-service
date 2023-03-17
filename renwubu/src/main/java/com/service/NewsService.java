@@ -114,7 +114,7 @@ public class NewsService {
         }
         NewsDetail newsDetail = new NewsDetail();
         BeanUtils.copyProperties(news, newsDetail);
-        newsDetail.setImages(JSON.parseObject(news.images, List.class));
+        newsDetail.setFiles(JSON.parseObject(news.images, List.class));
         return newsDetail;
     }
 

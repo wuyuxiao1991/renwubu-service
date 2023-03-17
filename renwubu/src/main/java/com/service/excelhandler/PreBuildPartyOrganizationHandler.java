@@ -47,21 +47,19 @@ public class PreBuildPartyOrganizationHandler implements ExcelHandler {
         return ExcelTypeEnum.PRE_BUILD_PARTY_ORGANIZATION.name();
     }
 
-    ;
 
     @Override
     public void upload(MultipartFile file, UploadExcelRequest request) {
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();
-        for (int i = 3; i < rowNum; i++) {
+        for (int i = 4; i < rowNum; i++) {
             Row row = sheet.getRow(i);
             insertPreBuildPartyOrganization(row,request.getIdentity());
         }
 
     }
 
-    ;
 
     public void insertPreBuildPartyOrganization(Row row,String identity) {
         PreBuildPartyOrganization preBuildPartyOrganization = new PreBuildPartyOrganization();
@@ -101,7 +99,7 @@ public class PreBuildPartyOrganizationHandler implements ExcelHandler {
     }
 
     public void fillRows(PreBuildPartyOrganization preBuildPartyOrganization, Sheet sheet, int i) {
-        int index = 3 + i;
+        int index = 4 + i;
         Row row = sheet.createRow(index);
         row.createCell(0).setCellValue(preBuildPartyOrganization.partyOrganizationName);
         row.createCell(1).setCellValue(preBuildPartyOrganization.partyOrganizationStartTime);

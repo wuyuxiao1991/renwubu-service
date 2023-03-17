@@ -1,6 +1,7 @@
 package com.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.persistence.entity.CompanyPotentialRegistration;
 import com.persistence.entity.EquipmentPotentialRegistration;
 import com.persistence.entity.TeamDetail;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,5 +24,10 @@ public interface EquipmentPotentialMapper extends BaseMapper<EquipmentPotentialR
 
     int queryTotalCount(@Param("searchKey") String searchKey,
                         @Param("identity") String identity);
+
+
+    List<EquipmentPotentialRegistration> findByNameAndStoragePlace(@Param("name") String name,
+                                                               @Param("storagePlace") String storagePlace,
+                                                               @Param("identity") String identity);
 
 }

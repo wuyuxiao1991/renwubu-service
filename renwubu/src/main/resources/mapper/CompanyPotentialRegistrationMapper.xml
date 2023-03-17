@@ -56,4 +56,17 @@
     </update>
 
 
+    <select id="findByName" resultType="com.persistence.entity.CompanyPotentialRegistration">
+        select * from company_potential_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
+
 </mapper>

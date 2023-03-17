@@ -58,14 +58,14 @@ public class BaseArmedInstitutionRegistrationHandler implements  ExcelHandler {
         int rowNum = sheet.getPhysicalNumberOfRows();
         for (int i = 4; i < rowNum; i++) {
             Row row = sheet.getRow(i);
-            insertBaseArmedInstitutionRegistration(row);
+            insertBaseArmedInstitutionRegistration(row,request.getIdentity());
         }
 
     }
 
     ;
 
-    public void insertBaseArmedInstitutionRegistration(Row row) {
+    public void insertBaseArmedInstitutionRegistration(Row row,String identity) {
         BaseArmedInstitutionRegistration baseArmedInstitutionRegistration = new BaseArmedInstitutionRegistration();
         if (commonService.getCellValueByCell(row.getCell(1)).isEmpty()) {
             return;
@@ -78,7 +78,7 @@ public class BaseArmedInstitutionRegistrationHandler implements  ExcelHandler {
         baseArmedInstitutionRegistration.level = commonService.getCellValueByCell(row.getCell(6));
         baseArmedInstitutionRegistration.regionDistribution = commonService.getCellValueByCell(row.getCell(7));
         baseArmedInstitutionRegistration.memo = commonService.getCellValueByCell(row.getCell(8));
-        baseArmedInstitutionRegistration.identity = commonService.getCellValueByCell(row.getCell(9));
+        baseArmedInstitutionRegistration.identity = identity;
         baseArmedInstitutionRegistrationMapper.insert(baseArmedInstitutionRegistration);
     }
 

@@ -1,7 +1,11 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
+import java.util.Locale;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,10 +25,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class PeoplePotentialRegistration {
 
 	@TableField(value = "id")
-	public int id; 
-
-	@TableField(value = "organization_unit")
-	public String organizationUnit; 
+	public int id;
 
 	@TableField(value = "name")
 	public String name; 
@@ -120,13 +121,13 @@ public class PeoplePotentialRegistration {
 	public String localMajorDuration2; 
 
 	@TableField(value = "identity")
-	public String identity; 
+	public String identity;
 
-	@TableField(value = "create_time")
-	public Date createTime; 
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
 
-	@TableField(value = "update_time")
-	public Date updateTime;
+	@TableField(value = "update_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
 
 	@TableField(value = "deleted")
 	public Boolean deleted;

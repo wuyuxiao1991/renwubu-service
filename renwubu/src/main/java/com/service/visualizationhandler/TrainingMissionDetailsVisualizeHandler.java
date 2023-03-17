@@ -1,5 +1,6 @@
 package com.service.visualizationhandler;
 
+import com.model.constants.enums.StatisticsTypeEnum;
 import com.model.dto.StatisticsDto;
 import com.model.dto.ValueDto;
 import com.persistence.mapper.TrainingMissionDetailMapper;
@@ -21,11 +22,11 @@ import static com.model.constants.enums.StatisticsTypeEnum.*;
 public class TrainingMissionDetailsVisualizeHandler implements VisualizeHandler {
     @Autowired
     private TrainingMissionDetailMapper mapper;
-    private final List<String> SUPPORT_VISUALIZATION_TYPES = Arrays.asList(TYPE_OF_TRAINING_MISSION_DETAILS.name(), PLACE_OF_TRAINING_MISSION_DETAILS.name(), DAY_COUNT_OF_TRAINING_MISSION_DETAILS.name());
+    private final List<String> SUPPORT_VISUALIZATION_TYPES = Arrays.asList(TYPE_OF_TRAINING_MISSION_DETAILS.name(), PLACE_OF_TRAINING_MISSION_DETAILS.name(), TEAM_OF_TRAINING_MISSION_DETAILS.name());
     private final Map<String, String> typeToGroupByField = new HashMap<String, String>() {
         {
             put(PLACE_OF_TRAINING_MISSION_DETAILS.name(), "concentrated_training_place");
-            put(DAY_COUNT_OF_TRAINING_MISSION_DETAILS.name(), "total_count");
+            put(TEAM_OF_TRAINING_MISSION_DETAILS.name(), "team_branch_name");
         }
     };
 
@@ -39,13 +40,13 @@ public class TrainingMissionDetailsVisualizeHandler implements VisualizeHandler 
         String groupByField = typeToGroupByField.get(type);
         List<HashMap<String, String>> list;
 
-        switch (type) {
-            case "PLACE_OF_TRAINING_MISSION_DETAILS":
+        switch (StatisticsTypeEnum.valueOf(type)) {
+            case PLACE_OF_TRAINING_MISSION_DETAILS:
                 list = mapper.groupByPlace(identity);
                 return list.stream().map(p -> new StatisticsDto(p.get(groupByField), new ValueDto(Integer.valueOf(String.valueOf(p.get("sum"))), null))).collect(Collectors.toList());
-            case "DAY_COUNT_OF_TRAINING_MISSION_DETAILS":
-                list = mapper.groupByTotalDayCount(identity);
-                return list.stream().map(p -> new StatisticsDto(p.get(groupByField), new ValueDto(Integer.valueOf(String.valueOf(p.get("count"))), null))).collect(Collectors.toList());
+            case TEAM_OF_TRAINING_MISSION_DETAILS:
+                list = mapper.groupByTeam(identity);
+                return list.stream().map(p -> new StatisticsDto(p.get(groupByField), new ValueDto(Integer.valueOf(String.valueOf(p.get("sum"))), null))).collect(Collectors.toList());
             default:
                 throw new Exception("输入错误");
         }

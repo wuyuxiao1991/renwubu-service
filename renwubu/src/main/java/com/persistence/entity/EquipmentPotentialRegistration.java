@@ -1,7 +1,10 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -48,13 +51,12 @@ public class EquipmentPotentialRegistration {
 	public String contactMethod; 
 
 	@TableField(value = "identity")
-	public String identity; 
+	public String identity;
 
-	@TableField(value = "create_time")
-	public Date createTime; 
-
-	@TableField(value = "update_time")
-	public Date updateTime;
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
+	@TableField(value = "update_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
 
 	@TableField(value = "deleted")
 	public Boolean deleted;

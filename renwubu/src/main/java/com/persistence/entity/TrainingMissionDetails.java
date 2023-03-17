@@ -66,7 +66,7 @@ public class TrainingMissionDetails {
 	public String identity;
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	public LocalDateTime createTime;
-	@TableField(value = "create_time", fill = FieldFill.UPDATE)
+	@TableField(value = "update_time", fill = FieldFill.UPDATE)
 	public LocalDateTime updateTime;
 
 	@TableField(value = "deleted")

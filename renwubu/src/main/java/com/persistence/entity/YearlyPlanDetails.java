@@ -1,14 +1,11 @@
 package com.persistence.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.sql.*;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
  * yearly_plan_details 实体类
@@ -51,8 +48,8 @@ public class YearlyPlanDetails {
 	@TableField(value = "base_concentrated_training_time")
 	public String baseConcentratedTrainingTime; 
 
-	@TableField(value = "other_traning_time")
-	public String otherTraningTime; 
+	@TableField(value = "other_training_time")
+	public String otherTrainingTime;
 
 	@TableField(value = "total_count")
 	public String totalCount; 
@@ -65,7 +62,7 @@ public class YearlyPlanDetails {
 
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	public LocalDateTime createTime;
-	@TableField(value = "create_time", fill = FieldFill.UPDATE)
+	@TableField(value = "update_time", fill = FieldFill.UPDATE)
 	public LocalDateTime updateTime;
 
 	@TableField(value = "deleted")

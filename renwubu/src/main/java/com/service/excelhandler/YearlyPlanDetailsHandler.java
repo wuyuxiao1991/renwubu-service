@@ -7,10 +7,13 @@ import com.persistence.mapper.YearlyPlanDetailsMapper;
 import com.service.CommonService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -53,14 +56,14 @@ public class YearlyPlanDetailsHandler implements ExcelHandler {
         Workbook workbook = commonService.getWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
         int rowNum = sheet.getPhysicalNumberOfRows();
-        for (int i = 3; i < rowNum; i++) {
+        for (int i = 4; i < rowNum; i++) {
             Row row = sheet.getRow(i);
             insertYearlyPlanDetails(row, request.getIdentity(), request.getYear());
         }
     }
 
     @Override
-    public String download(String identity) throws IOException {
+    public String download(String identity) throws IOException, InvalidFormatException {
         //1.查出列表数据
         List<YearlyPlanDetails> list = yearlyPlanDetailsMapper.pageQuery("", "", "", "", 0, 10000000);
 
@@ -72,12 +75,12 @@ public class YearlyPlanDetailsHandler implements ExcelHandler {
         }
 
         //3.写入新文件
-        String downloadFilePath = url + "yearly_plan_details.xls";
+        String downloadFilePath = url + "yearly_plan_details.xlsx";
         FileOutputStream fileOut = new FileOutputStream(downloadFilePath);
         wb.write(fileOut);
         fileOut.close();
 
-        return mappingUrl + "yearly_plan_details.xls";
+        return mappingUrl + "yearly_plan_details.xlsx";
     }
 
 
@@ -87,44 +90,45 @@ public class YearlyPlanDetailsHandler implements ExcelHandler {
             return;
         }
         yearlyPlanDetails.year = year;
-        yearlyPlanDetails.affiliation = commonService.getCellValueByCell(row.getCell(0));
-        yearlyPlanDetails.month = commonService.getCellValueByCell(row.getCell(1));
-        yearlyPlanDetails.teamBranch = commonService.getCellValueByCell(row.getCell(2));
-        yearlyPlanDetails.teamType = commonService.getCellValueByCell(row.getCell(3));
-        yearlyPlanDetails.isTaskTeam = commonService.getCellValueByCell(row.getCell(4));
-        yearlyPlanDetails.organizedHeadcount = commonService.getCellValueByCell(row.getCell(5));
-        yearlyPlanDetails.trainingHeadcount = commonService.getCellValueByCell(row.getCell(6));
-        yearlyPlanDetails.baseConcentratedTrainingTime = commonService.getCellValueByCell(row.getCell(7));
-        yearlyPlanDetails.otherTraningTime = commonService.getCellValueByCell(row.getCell(8));
-        yearlyPlanDetails.totalCount = commonService.getCellValueByCell(row.getCell(9));
-        yearlyPlanDetails.concentratedTrainingPlace = commonService.getCellValueByCell(row.getCell(10));
+        yearlyPlanDetails.affiliation = commonService.getCellValueByCell(row.getCell(1));
+        yearlyPlanDetails.month = commonService.getCellValueByCell(row.getCell(2));
+        yearlyPlanDetails.teamBranch = commonService.getCellValueByCell(row.getCell(3));
+        yearlyPlanDetails.teamType = commonService.getCellValueByCell(row.getCell(4));
+        yearlyPlanDetails.isTaskTeam = commonService.getCellValueByCell(row.getCell(5));
+        yearlyPlanDetails.organizedHeadcount = commonService.getCellValueByCell(row.getCell(6));
+        yearlyPlanDetails.trainingHeadcount = commonService.getCellValueByCell(row.getCell(7));
+        yearlyPlanDetails.baseConcentratedTrainingTime = commonService.getCellValueByCell(row.getCell(8));
+        yearlyPlanDetails.otherTrainingTime = commonService.getCellValueByCell(row.getCell(9));
+        yearlyPlanDetails.totalCount = commonService.getCellValueByCell(row.getCell(10));
+        yearlyPlanDetails.concentratedTrainingPlace = commonService.getCellValueByCell(row.getCell(11));
         yearlyPlanDetails.identity = identity;
 
         //todo 判重 击中了就continue
         yearlyPlanDetailsMapper.insert(yearlyPlanDetails);
     }
 
-    private Workbook getWorkbook() throws IOException {
-        String peopleDetailTemplatePath = templateUrl + "yearly_plan_details.xls";
+    private Workbook getWorkbook() throws IOException, InvalidFormatException {
+        String peopleDetailTemplatePath = templateUrl + "yearly_plan_details.xlsx";
         FileInputStream inputStream = new FileInputStream(peopleDetailTemplatePath);
-        POIFSFileSystem fs = new POIFSFileSystem(inputStream);
-        return new HSSFWorkbook(fs);
+        OPCPackage pkg = OPCPackage.open(inputStream);
+        return new XSSFWorkbook(pkg);
     }
 
     private void fillRows(YearlyPlanDetails yearlyPlanDetails, Sheet sheet, int i) {
-        int index = 3 + i;
+        int index = 4 + i;
         Row row = sheet.createRow(index);
         row.createCell(0).setCellValue(yearlyPlanDetails.affiliation);
-        row.createCell(1).setCellValue(yearlyPlanDetails.month);
-        row.createCell(2).setCellValue(yearlyPlanDetails.teamBranch);
-        row.createCell(3).setCellValue(yearlyPlanDetails.teamType);
-        row.createCell(4).setCellValue(yearlyPlanDetails.isTaskTeam);
-        row.createCell(5).setCellValue(yearlyPlanDetails.organizedHeadcount);
-        row.createCell(6).setCellValue(yearlyPlanDetails.trainingHeadcount);
-        row.createCell(7).setCellValue(yearlyPlanDetails.baseConcentratedTrainingTime);
-        row.createCell(8).setCellValue(yearlyPlanDetails.otherTraningTime);
-        row.createCell(9).setCellValue(yearlyPlanDetails.totalCount);
-        row.createCell(10).setCellValue(yearlyPlanDetails.concentratedTrainingPlace);
+        row.createCell(1).setCellValue(yearlyPlanDetails.affiliation);
+        row.createCell(2).setCellValue(yearlyPlanDetails.month);
+        row.createCell(3).setCellValue(yearlyPlanDetails.teamBranch);
+        row.createCell(4).setCellValue(yearlyPlanDetails.teamType);
+        row.createCell(5).setCellValue(yearlyPlanDetails.isTaskTeam);
+        row.createCell(6).setCellValue(yearlyPlanDetails.organizedHeadcount);
+        row.createCell(7).setCellValue(yearlyPlanDetails.trainingHeadcount);
+        row.createCell(8).setCellValue(yearlyPlanDetails.baseConcentratedTrainingTime);
+        row.createCell(9).setCellValue(yearlyPlanDetails.otherTrainingTime);
+        row.createCell(10).setCellValue(yearlyPlanDetails.totalCount);
+        row.createCell(11).setCellValue(yearlyPlanDetails.concentratedTrainingPlace);
 
     }
 }

@@ -74,8 +74,7 @@ public class EmergencyEquipmentRegistrationHandler implements ExcelHandler{
         emergencyEquipmentRegistration.storagePlace = commonService.getCellValueByCell(row.createCell(7));
         emergencyEquipmentRegistration.managementUnit = commonService.getCellValueByCell(row.createCell(8));
         emergencyEquipmentRegistration.dispatchTime = commonService.getCellValueByCell(row.getCell(9));
-        emergencyEquipmentRegistration.organizationType = commonService.getCellValueByCell(row.createCell(10));
-        emergencyEquipmentRegistration.district = commonService.getCellValueByCell(row.getCell(11));
+        emergencyEquipmentRegistration.organizationType = commonService.getCellValueByCell(row.getCell(10));
         emergencyEquipmentRegistration.identity = identity;
 
         emergencyEquipmentRegistrationMapper.insert(emergencyEquipmentRegistration);

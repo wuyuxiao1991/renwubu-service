@@ -49,5 +49,20 @@
         update equipment_potential_registration set deleted = 1 where id = #{id}
     </update>
 
+    <select id="findByNameAndStoragePlace" resultType="com.persistence.entity.EquipmentPotentialRegistration">
+        select * from equipment_potential_registration
+        <where>
+            (deleted ='0' or deleted is null)
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+            <if test="storagePlace!=null and storagePlace!=''">
+                and storage_place like "%"#{storagePlace}"%"
+            </if>
+            <if test="identity!=null and identity!=''">
+                and identity like "%"#{identity}"%"
+            </if>
+        </where>
+    </select>
 
 </mapper>

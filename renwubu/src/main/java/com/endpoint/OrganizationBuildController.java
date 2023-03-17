@@ -83,7 +83,7 @@ public class OrganizationBuildController {
         try {
             //校验参数
             if (ObjectUtils.isEmpty(request.getName())) {
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("名称不可为空！");
             }
             //1.判重
             List<TeamDetail> teamDetails = organizationBuildService.getTeamDetail(request.getName(), request.getIdentity());
@@ -127,7 +127,7 @@ public class OrganizationBuildController {
         try {
             //校验参数
             if (ObjectUtils.isEmpty(request.getIdNumber())) {
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("身份证号不可为空！");
             }
 
             // 判重

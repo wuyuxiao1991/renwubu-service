@@ -1,7 +1,10 @@
 package com.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -57,10 +60,13 @@ public class CompanyPotentialRegistration {
 	public String maleEmployeeNumber; 
 
 	@TableField(value = "female_employee_number")
-	public String femaleEmployeeNumber; 
+	public String femaleEmployeeNumber;
+
+	@TableField(value = "major_business")
+	public String majorBusiness;
 
 	@TableField(value = "equipment_name")
-	public String equipmentName; 
+	public String equipmentName;
 
 	@TableField(value = "equipment_major_property")
 	public String equipmentMajorProperty;
@@ -78,14 +84,12 @@ public class CompanyPotentialRegistration {
 	public String hasBusinessArmedForce; 
 
 	@TableField(value = "identity")
-	public String identity; 
+	public String identity;
 
-	@TableField(value = "create_time")
-	public Date createTime; 
-
-	@TableField(value = "update_time")
-	public Date updateTime;
-
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	public LocalDateTime createTime;
+	@TableField(value = "update_time", fill = FieldFill.UPDATE)
+	public LocalDateTime updateTime;
 	@TableField(value = "deleted")
 	public Boolean deleted;
 }

@@ -54,4 +54,34 @@ public class PotentialCheckService {
     }
 
 
+    public List<PeoplePotentialRegistration> getPeoplePotentialRegistration(AddPeoplePotentialRegistrationRequest request){
+        return peoplePotentialMapper.findByNameAndIdNumber(request.getName(), request.getIdNumber(), request.getIdentity());
+    }
+
+    public List<CompanyPotentialRegistration> getCompanyPotentialRegistration(AddCompanyPotentialRegistrationRequest request){
+        return companyPotentialMapper.findByName(request.getName(), request.identity);
+    }
+
+    public List<EquipmentPotentialRegistration> getEquipmentPotentialRegistration(AddEquipmentPotentialRegistrationRequest request){
+        return equipmentPotentialMapper.findByNameAndStoragePlace(request.getName(),request.getStoragePlace(), request.identity);
+    }
+
+    public void addPeoplePotentialRegistration(AddPeoplePotentialRegistrationRequest request){
+        PeoplePotentialRegistration peoplePotentialRegistration = new PeoplePotentialRegistration();
+        BeanUtils.copyProperties(request,peoplePotentialRegistration);
+        peoplePotentialMapper.insert(peoplePotentialRegistration);
+    }
+
+    public void addCompanyPotentialRegistration(AddCompanyPotentialRegistrationRequest request){
+        CompanyPotentialRegistration companyPotentialRegistration = new CompanyPotentialRegistration();
+        BeanUtils.copyProperties(request,companyPotentialRegistration);
+        companyPotentialMapper.insert(companyPotentialRegistration);
+    }
+
+    public void addEquipmentPotentialRegistration(AddEquipmentPotentialRegistrationRequest request){
+        EquipmentPotentialRegistration equipmentPotentialRegistration = new EquipmentPotentialRegistration();
+        BeanUtils.copyProperties(request,equipmentPotentialRegistration);
+        equipmentPotentialMapper.insert(equipmentPotentialRegistration);
+    }
+
 }

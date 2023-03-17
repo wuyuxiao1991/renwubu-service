@@ -19,7 +19,11 @@ public enum ExcelTypeEnum {
     EMERGENCY_EQUIPMENT_REGISTRATION("应急装备登记表"),
     MILITARY_AND_CIVILIZATION_EQUIPMENT_REGISTRATION("军民通用装备登记表"),
     MILITARY_SERVICE_REGISTRATION("兵役登记表"),
-    PRE_BUILD_PARTY_ORGANIZATION("预备党组织登记表");
+    PRE_BUILD_PARTY_ORGANIZATION("预备党组织登记表"),
+    PEOPLE_POTENTIAL("人员潜力表"),
+    COMPANY_POTENTIAL("人员潜力表"),
+    EQUIPMENT_POTENTIAL("人员潜力表")
+    ;
 
     private String name;
 

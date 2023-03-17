@@ -107,7 +107,7 @@ public class EquipmentSupportController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getEquipmentName())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("装备名称不可为空！");
             }
 
             List<ArmsEquipmentRegistration> armsEquipmentRegistrations = service.getArmsEquipmentRegistration(request.getEquipmentName(), request.getType(), request.getIdentity());
@@ -132,7 +132,7 @@ public class EquipmentSupportController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getEquipmentName())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("装备名不可为空！");
             }
 
             List<EmergencyEquipmentRegistration> emergencyEquipmentRegistrations = service.getEmergencyEquipmentRegistration(request.getEquipmentName(), request.getType(), request.getIdentity());
@@ -152,7 +152,7 @@ public class EquipmentSupportController {
 
             //校验参数
             if(ObjectUtils.isEmpty(request.getEquipmentName())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("装备名不可为空！");
             }
 
             List<MilitaryAndCivilianEquipmentRegistration> militaryAndCivilianEquipmentRegistrations = service.getMilitaryAndCivilianEquipmentRegistration(request.getEquipmentName(), request.getType(), request.getIdentity());

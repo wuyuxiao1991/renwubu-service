@@ -128,7 +128,7 @@ public class PoliticalWorkController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getPartyOrganizationName())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("党组织名不可为空！");
             }
             List<PreBuildPartyOrganization> preBuildPartyOrganizations = politicalWorkService.getPreBuildPartyOrganization(request.getPartyOrganizationName(),request.getIdentity());
             if (!preBuildPartyOrganizations.isEmpty()) {
@@ -152,7 +152,7 @@ public class PoliticalWorkController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getName())||ObjectUtils.isEmpty(request.getType())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("名称、类型不可为空！");
             }
             // 判重
             List<BaseArmedInstitutionRegistration> baseArmedInstitutionRegistrations = politicalWorkService.getBaseArmedInstitutionRegistration(request.getName(), request.getType(),  request.getIdentity());
@@ -178,7 +178,7 @@ public class PoliticalWorkController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getIdNumber())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("身份证号不可为空！");
             }
             // 判重
             List<ZhuanwuLeaderRegistration> zhuanwuLeaderRegistrations = politicalWorkService.getZhuanwuLeaderRegistration(request.getIdNumber(),  request.getIdentity());
@@ -197,7 +197,7 @@ public class PoliticalWorkController {
         try{
             //校验参数
             if(ObjectUtils.isEmpty(request.getName())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("名称不可为空！");
             }
 
             List<MinbingLeaderRegistration> minbingLeaderRegistrations=politicalWorkService.getMinbingLeaderRegistration(request.getWork(), request.getPosition(), request.getName(), request.getPoliticalStatus(), request.getPhone(), request.getTeamNameAndPosition(), request.getIdentity());

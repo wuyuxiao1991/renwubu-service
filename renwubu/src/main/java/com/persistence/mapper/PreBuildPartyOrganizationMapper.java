@@ -5,6 +5,7 @@ import com.persistence.entity.PreBuildPartyOrganization;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -24,6 +25,8 @@ public interface PreBuildPartyOrganizationMapper extends BaseMapper<PreBuildPart
                                               @Param("identity") String identity,
                                               @Param("offset") int offset, @Param("pageSize") int pageSize);
 
+
+    List<HashMap<String, String>> groupBy(String identity);
 
     int updateDeleteStatus(String id);
 

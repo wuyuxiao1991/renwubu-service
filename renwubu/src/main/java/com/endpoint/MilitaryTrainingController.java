@@ -73,14 +73,13 @@ public class MilitaryTrainingController {
     /**
      * 新增一条训练任务详情表记录
      */
-    //PsstMapping 是Spring MVC用来标注处理HTTP POST请求的注解，也就是告诉控制器这个方法是用来处理Post请求的
     @PostMapping("/add_training_mission_details")
     public BaseResponse<Boolean> addTrainingMissionDetails(@RequestBody AddTrainingMissionDetailsRequest request){
         try {
 
             //校验参数
             if(ObjectUtils.isEmpty(request.getProvince())||ObjectUtils.isEmpty(request.getTeamBranchName())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("省份和分支名不可为空！");
             }
             // 判重
             List<TrainingMissionDetails> trainingMissionDetails = militaryTrainingService.getTrainingMissionDetail(request.getProvince(),request.getTeamBranchName(), request.getIdentity());
@@ -103,7 +102,7 @@ public class MilitaryTrainingController {
         try {
             //校验参数
             if(ObjectUtils.isEmpty(request.getTeamBranch())||ObjectUtils.isEmpty(request.getYear())||ObjectUtils.isEmpty(request.getMonth())){
-                return BaseResponse.failed("参数校验不通过！");
+                return BaseResponse.failed("队伍名称、年份、月份不可为空！");
             }
 
             List<YearlyPlanDetails> yearlyPlanDetails = militaryTrainingService.getYearlyPlanDetails(request.getYear(), request.getMonth(), request.getTeamBranch(), request.getIdentity());
